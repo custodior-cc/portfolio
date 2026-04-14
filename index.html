@@ -1206,15 +1206,20 @@
       .contact-form { padding: 24px 16px; }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
-      }
-    }
-    .contato-container {
-    display: inline-block; /* Faz a div se ajustar ao tamanho da imagem */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* CORREÇÃO: Força a exibição dos elementos se a animação for cancelada */
+  .hero h1, .hero-sub, .hero-meta, .section-eyebrow, 
+  .section-title, .section-desc, .op-card, .skills-wrapper, 
+  .edu-block, .fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 .img-whatsapp {
@@ -1224,7 +1229,6 @@
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* Efeito de brilho e aumento leve ao passar o mouse */
 .img-whatsapp:hover {
     transform: scale(1.1);
     filter: brightness(1.2);
