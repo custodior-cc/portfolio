@@ -1,1241 +1,2139 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#050505">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#050505">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
   <title>Rafael Custódio · CFO Externo · Gestão Financeira para PMEs</title>
+  <meta name="description" content="CFO Externo especializado em gestão financeira para PMEs. Ajudo empreendedores a entender seus números, aumentar margem e tomar decisões com segurança.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="favicon.png">
 
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://custodior.com/">
+  <meta property="og:title" content="Rafael Custódio · CFO Externo · Gestão Financeira para PMEs">
+  <meta property="og:description" content="CFO Externo especializado em gestão financeira para PMEs. Ajudo empreendedores a entender seus números, aumentar margem e tomar decisões com segurança.">
+  <meta property="og:image" content="https://custodior.com/og-image.png">
+  <meta property="og:image:alt" content="Rafael Custódio - CFO Externo">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://custodior.com/">
+  <meta property="twitter:title" content="Rafael Custódio · CFO Externo · Gestão Financeira para PMEs">
+  <meta property="twitter:description" content="CFO Externo especializado em gestão financeira para PMEs. Ajudo empreendedores a entender seus números, aumentar margem e tomar decisões com segurança.">
+  <meta property="twitter:image" content="https://custodior.com/og-image.png">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Rafael Custódio",
+    "image": "https://custodior.com/perfil1.png",
+    "jobTitle": "CFO Externo",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Feira de Santana",
+      "addressRegion": "BA",
+      "addressCountry": "BR"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "UNIFACS"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/custodior/",
+      "https://wa.me/5575983144766"
+    ]
+  }
+  </script>
+
   <style>
-    /* ══════════════════════════════════════════════════════════
-       TOKENS — idênticos ao v3
-    ══════════════════════════════════════════════════════════ */
-    :root {
-      --bg-dark:        #050505;
-      --bg-surface:     #0a0a0a;
-      --bg-card:        #0f0f0f;
-      --accent:         #00BFFF;
-      --accent-dim:     rgba(0, 191, 255, 0.08);
-      --accent-mid:     rgba(0, 191, 255, 0.18);
-      --accent-bright:  rgba(0, 191, 255, 0.35);
-      --accent-border:  rgba(0, 191, 255, 0.25);
-      --text-main:      #ffffff;
-      --text-secondary: #e0e0e0;
-      --text-muted:     #808080;
-      --text-soft:      #606060;
-      --border-subtle:  rgba(255, 255, 255, 0.05);
-      --border-normal:  rgba(255, 255, 255, 0.08);
-      --border-strong:  rgba(255, 255, 255, 0.14);
-      --font-display:   'Syne', sans-serif;
-      --font-body:      'Inter', sans-serif;
-      --font-code:      'JetBrains Mono', monospace;
-      --ease-smooth:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      --ease-bounce:    cubic-bezier(0.34, 1.56, 0.64, 1);
-      /* Safe area para iPhone com notch */
-      --safe-left:  env(safe-area-inset-left, 0px);
-      --safe-right: env(safe-area-inset-right, 0px);
-      --safe-bottom:env(safe-area-inset-bottom, 0px);
-    }
+    /* CSS Layers for better cascade management */
+    @layer reset, base, components, utilities;
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-
-    body {
-      background: var(--bg-dark);
-      color: var(--text-main);
-      font-family: var(--font-body);
-      line-height: 1.6;
-      overflow-x: hidden;
-      /* Remove tap highlight azul padrão */
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-      opacity: 0.02; pointer-events: none; z-index: 9999;
-    }
-
-    /* ══════════════════════════════════════════════════════════
-       NAVEGAÇÃO — mobile-first
-    ══════════════════════════════════════════════════════════ */
-    nav {
-      position: fixed; top: 0; width: 100%;
-      padding: 14px 20px;
-      padding-left: calc(20px + var(--safe-left));
-      padding-right: calc(20px + var(--safe-right));
-      display: flex; justify-content: space-between; align-items: center;
-      background: rgba(5, 5, 5, 0.88);
-      backdrop-filter: blur(16px) saturate(1.2);
-      z-index: 1000;
-      border-bottom: 1px solid var(--border-subtle);
-      transition: all 0.3s var(--ease-smooth);
-    }
-    nav.scrolled {
-      background: rgba(5, 5, 5, 0.96);
-      border-bottom-color: var(--border-normal);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-    }
-    .logo {
-      font-family: var(--font-display); font-size: 1rem; font-weight: 800;
-      letter-spacing: 2px; text-transform: uppercase;
-      background: linear-gradient(135deg, var(--text-main), var(--accent));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .nav-links { display: none; } /* oculto no mobile */
-
-    /* Hamburger — touch target 44×44 */
-    .hamburger {
-      display: flex; flex-direction: column; justify-content: center;
-      gap: 5px; cursor: pointer;
-      min-width: 44px; min-height: 44px;
-      align-items: center;
-      background: none; border: none;
-      touch-action: manipulation;
-    }
-    .hamburger span {
-      display: block; width: 22px; height: 2px;
-      background: var(--text-main); transition: all 0.3s var(--ease-smooth);
-      border-radius: 1px;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    /* Menu mobile */
-    .mobile-menu {
-      display: none; position: fixed; inset: 0;
-      background: rgba(5, 5, 5, 0.98); z-index: 999;
-      flex-direction: column; align-items: flex-start; justify-content: center;
-      padding: 0 28px; backdrop-filter: blur(8px);
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      font-family: var(--font-display);
-      font-size: clamp(1.9rem, 9vw, 3rem);
-      font-weight: 800; text-transform: uppercase; color: var(--text-muted);
-      text-decoration: none; letter-spacing: 1px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border-normal); width: 100%;
-      transition: color 0.25s var(--ease-smooth);
-      touch-action: manipulation;
-    }
-    .mobile-menu a:last-child { border-bottom: none; }
-    .mobile-menu a:active { color: var(--accent); }
-
-    /* ══════════════════════════════════════════════════════════
-       HERO — mobile-first: imagem em cima, conteúdo embaixo
-    ══════════════════════════════════════════════════════════ */
-    .hero {
-      min-height: 100svh; /* 100svh: corrige barra de endereço iOS */
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      border-bottom: 1px solid var(--border-subtle);
-      overflow: hidden;
-    }
-
-    /* Faixa de imagem no topo — mobile */
-    .hero-image-container {
-      flex: 0 0 44vh;
-      position: relative;
-      overflow: hidden;
-      display: flex; align-items: flex-end; justify-content: center;
-    }
-    .hero-image-container::before {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 60%;
-      background: linear-gradient(to top, var(--bg-dark) 0%, transparent 100%);
-      z-index: 3;
-    }
-    .hero-image-container::after {
-      content: ''; position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 90%, rgba(0, 191, 255, 0.1) 0%, transparent 65%);
-      z-index: 2; pointer-events: none;
-    }
-    .hero-image-container img {
-      display: block; height: 100%; width: 100%;
-      object-fit: cover; object-position: center 10%;
-      position: relative; z-index: 1;
-      filter: drop-shadow(0 0 24px rgba(0, 191, 255, 0.3));
-      animation: neon-pulse 3.8s ease-in-out infinite alternate;
-    }
-    @keyframes neon-pulse {
-      from { filter: drop-shadow(0 0 16px rgba(0, 191, 255, 0.25)) drop-shadow(0 0 40px rgba(0, 191, 255, 0.08)); }
-      to   { filter: drop-shadow(0 0 28px rgba(0, 191, 255, 0.45)) drop-shadow(0 0 70px rgba(0, 191, 255, 0.15)); }
-    }
-
-    /* Conteúdo hero — abaixo da imagem */
-    .hero-content {
-      flex: 1;
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 24px 20px 36px;
-      padding-left: calc(20px + var(--safe-left));
-      padding-right: calc(20px + var(--safe-right));
-      position: relative; z-index: 2;
-    }
-
-    /* Glow ambiente */
-    .hero-content::before {
-      content: ''; position: absolute;
-      bottom: -20%; left: -20%;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(0, 191, 255, 0.04) 0%, transparent 65%);
-      pointer-events: none; z-index: 0;
-      animation: orb-drift 14s ease-in-out infinite alternate;
-    }
-    @keyframes orb-drift {
-      from { transform: translate(0, 0) scale(1); }
-      to   { transform: translate(20px, -20px) scale(1.1); }
-    }
-
-    .terminal-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 6px 12px; background: var(--accent-dim); color: var(--accent);
-      border: 1px solid var(--accent-border); font-family: var(--font-code);
-      font-size: 0.65rem; margin-bottom: 20px; letter-spacing: 1px;
-      border-radius: 2px; text-transform: uppercase;
-      position: relative; z-index: 1;
-    }
-    .terminal-badge::before {
-      content: ''; width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent); flex-shrink: 0;
-      animation: blink 1.3s step-end infinite; box-shadow: 0 0 6px var(--accent);
-    }
-    @keyframes blink { 50% { opacity: 0.3; } }
-
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.6rem, 10vw, 3.6rem);
-      font-weight: 800; line-height: 1.0; text-transform: uppercase;
-      margin-bottom: 16px; letter-spacing: -1.5px;
-      opacity: 0; animation: fadeInUp 0.8s 0.15s var(--ease-smooth) forwards;
-      position: relative; z-index: 1;
-    }
-    .hero h1 .accent { color: var(--accent); }
-
-    .hero-tagline {
-      font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7;
-      margin-bottom: 16px;
-      opacity: 0; animation: fadeInUp 0.8s 0.28s var(--ease-smooth) forwards;
-      position: relative; z-index: 1;
-    }
-    .hero-sub {
-      font-family: var(--font-code); font-weight: 300; color: var(--text-muted);
-      font-size: 0.78rem; line-height: 1.85; min-height: 3.2em;
-      opacity: 0; animation: fadeInUp 0.8s 0.38s var(--ease-smooth) forwards;
-      position: relative; z-index: 1;
-    }
-    .cursor-char {
-      display: inline-block; width: 2px; height: 1em; background: var(--accent);
-      vertical-align: text-bottom; animation: blink 1s step-end infinite; margin-left: 2px;
-    }
-    /* CTAs hero — full width, empilhados, fáceis de toque */
-    .hero-cta-group {
-      margin-top: 28px; display: flex; flex-direction: column; gap: 10px;
-      opacity: 0; animation: fadeInUp 0.8s 0.48s var(--ease-smooth) forwards;
-      position: relative; z-index: 1;
-    }
-    .btn-primary {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      width: 100%; min-height: 52px;
-      padding: 14px 24px; background: var(--accent); color: #000;
-      font-family: var(--font-code); font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 1px; text-transform: uppercase; text-decoration: none;
-      border-radius: 2px; border: none; cursor: pointer;
-      transition: box-shadow 0.25s var(--ease-smooth), transform 0.2s var(--ease-smooth);
-      touch-action: manipulation;
-    }
-    .btn-primary:active { transform: scale(0.98); }
-    .btn-outline {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      width: 100%; min-height: 52px;
-      padding: 14px 24px; background: transparent; color: var(--text-main);
-      font-family: var(--font-code); font-size: 0.78rem; font-weight: 500;
-      letter-spacing: 1px; text-transform: uppercase; text-decoration: none;
-      border-radius: 2px; border: 1px solid var(--border-strong);
-      transition: all 0.25s var(--ease-smooth); cursor: pointer;
-      touch-action: manipulation;
-    }
-    .btn-outline:active { border-color: var(--accent-border); color: var(--accent); background: var(--accent-dim); }
-
-    /* ══════════════════════════════════════════════════════════
-       SECTIONS BASE — mobile-first
-    ══════════════════════════════════════════════════════════ */
-    section {
-      padding: 56px 20px;
-      padding-left: calc(20px + var(--safe-left));
-      padding-right: calc(20px + var(--safe-right));
-      position: relative; z-index: 1;
-    }
-    section:nth-child(odd) { background: var(--bg-dark); }
-    section:nth-child(even) { background: var(--bg-surface); }
-
-    /* Override manual de backgrounds (mesmo do v3) */
-    #dor          { background: var(--bg-dark);    border-bottom: 1px solid var(--border-subtle); }
-    #porque       { background: var(--bg-surface); }
-    #comofunciona { background: var(--bg-dark);    }
-    #servicos     { background: var(--bg-surface); }
-    #credenciais  { background: var(--bg-dark);    }
-    #contato      { background: var(--bg-surface); border-top: 1px solid var(--border-subtle); }
-
-    .section-eyebrow {
-      font-family: var(--font-code); font-size: 0.68rem; color: var(--accent);
-      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;
-    }
-    .section-title {
-      font-family: var(--font-display); font-size: clamp(1.8rem, 7vw, 2.6rem);
-      font-weight: 800; text-transform: uppercase; margin-bottom: 16px;
-      line-height: 1.05; letter-spacing: -0.5px;
-    }
-    .section-title .muted { color: var(--text-muted); }
-    .section-desc {
-      font-size: 0.95rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 40px;
-    }
-
-    /* Fade-in via IntersectionObserver */
-    .fade-in {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.6s var(--ease-smooth), transform 0.6s var(--ease-smooth);
-    }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    /* ══════════════════════════════════════════════════════════
-       DOR — IDENTIFICAÇÃO
-    ══════════════════════════════════════════════════════════ */
-    .dor-intro {
-      font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8;
-      margin-bottom: 36px; font-weight: 300;
-    }
-    .dor-intro strong { color: var(--text-main); font-weight: 600; }
-
-    .dor-grid {
-      display: grid; grid-template-columns: 1fr;
-      gap: 2px; background: var(--accent-border); border: 1px solid var(--accent-border);
-      margin-bottom: 28px;
-    }
-    .dor-card {
-      background: var(--bg-card); padding: 24px 20px;
-      transition: background 0.25s var(--ease-smooth);
-      position: relative; overflow: hidden;
-    }
-    .dor-card:active { background: #161616; }
-    .dor-card-num {
-      font-family: var(--font-code); font-size: 0.58rem; color: var(--accent);
-      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; opacity: 0.6;
-    }
-    .dor-card h3 {
-      font-family: var(--font-display); font-size: 1rem; font-weight: 700;
-      text-transform: uppercase; margin-bottom: 8px; color: var(--text-main);
-    }
-    .dor-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
-
-    .dor-callout {
-      border-left: 3px solid var(--accent); padding: 16px 20px;
-      background: var(--accent-dim);
-    }
-    .dor-callout p {
-      font-family: var(--font-code); font-size: 0.82rem; color: var(--accent);
-      line-height: 1.7; font-style: italic;
-    }
-
-    /* ══════════════════════════════════════════════════════════
-       POR QUE — EDUCAÇÃO
-    ══════════════════════════════════════════════════════════ */
-    .porque-grid { display: grid; grid-template-columns: 1fr; gap: 36px; }
-    .porque-left h2 {
-      font-family: var(--font-display); font-size: clamp(1.7rem, 6.5vw, 2.4rem);
-      font-weight: 800; text-transform: uppercase; line-height: 1.1;
-      letter-spacing: -0.5px; margin-bottom: 20px;
-    }
-    .porque-left h2 .accent { color: var(--accent); }
-    .porque-left p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
-
-    /* Tabela: scroll horizontal no mobile, clara indicação */
-    .table-scroll-wrap {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      border: 1px solid var(--border-normal);
-      border-radius: 2px;
-      /* fades laterais indicando scroll */
-      background:
-        linear-gradient(to right, var(--bg-card) 20px, transparent 50px),
-        linear-gradient(to left,  var(--bg-card) 20px, transparent 50px),
-        var(--bg-card);
-      background-attachment: local, local, scroll;
-    }
-    .table-scroll-hint {
-      font-family: var(--font-code); font-size: 0.6rem; color: var(--text-muted);
-      letter-spacing: 1px; text-align: right; padding: 6px 12px 10px;
-      text-transform: uppercase;
-    }
-    .diferenca-table { min-width: 480px; width: 100%; border-collapse: collapse; }
-    .diferenca-table th {
-      font-family: var(--font-code); font-size: 0.64rem; letter-spacing: 1.2px;
-      text-transform: uppercase; padding: 12px 16px; text-align: left;
-      border-bottom: 1px solid var(--border-normal); white-space: nowrap;
-    }
-    .diferenca-table th:first-child { color: var(--text-muted); }
-    .diferenca-table th:last-child  { color: var(--accent); }
-    .diferenca-table td {
-      padding: 11px 16px; font-size: 0.84rem; border-bottom: 1px solid var(--border-subtle);
-      vertical-align: top; line-height: 1.5;
-    }
-    .diferenca-table td:first-child { color: var(--text-muted); font-size: 0.8rem; white-space: nowrap; }
-    .diferenca-table td:last-child  { color: var(--text-main); }
-    .diferenca-table tr:last-child td { border-bottom: none; }
-    .check { color: var(--accent); margin-right: 5px; }
-
-    /* ══════════════════════════════════════════════════════════
-       COMO FUNCIONA
-    ══════════════════════════════════════════════════════════ */
-    .etapas-wrapper {
-      display: grid; grid-template-columns: 1fr;
-      gap: 2px; background: var(--accent-border); border: 1px solid var(--accent-border);
-    }
-    .etapa {
-      background: var(--bg-card); padding: 24px 20px;
-      position: relative; overflow: hidden;
-      transition: background 0.25s;
-    }
-    .etapa::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--accent), transparent);
-      opacity: 0; transition: opacity 0.3s;
-    }
-    .etapa:active { background: #141414; }
-    .etapa:active::before { opacity: 1; }
-    .etapa-num {
-      font-family: var(--font-code); font-size: 0.6rem; color: var(--accent);
-      letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 10px;
-    }
-    .etapa h3 {
-      font-family: var(--font-display); text-transform: uppercase;
-      font-size: 1rem; margin-bottom: 8px; color: var(--text-main);
-    }
-    .etapa p { color: var(--text-muted); font-size: 0.86rem; line-height: 1.7; }
-
-    .sim-inline-card {
-      background: var(--bg-card); border: 1px solid var(--border-normal);
-      padding: 24px 20px; cursor: pointer;
-      transition: all 0.3s var(--ease-smooth);
-      touch-action: manipulation;
-    }
-    .sim-inline-card:active { border-color: var(--accent-border); background: #141414; }
-    .sim-label {
-      font-family: var(--font-code); font-size: 0.58rem; color: var(--accent);
-      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; opacity: 0.7;
-    }
-    .sim-inline-card h3 {
-      font-family: var(--font-display); font-size: 1.05rem; font-weight: 700;
-      text-transform: uppercase; margin-bottom: 8px;
-    }
-    .sim-inline-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 18px; }
-
-    /* ══════════════════════════════════════════════════════════
-       SERVIÇOS & PLANOS
-    ══════════════════════════════════════════════════════════ */
-    .planos-grid {
-      display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 24px;
-    }
-    .plano-card {
-      background: var(--bg-card); border: 1px solid var(--border-normal);
-      padding: 28px 20px; position: relative; overflow: hidden;
-      transition: all 0.35s var(--ease-smooth);
-    }
-    .plano-card.destaque {
-      border-color: var(--accent-border);
-      background: linear-gradient(160deg, #0f1a1f, var(--bg-card));
-      box-shadow: 0 0 32px rgba(0, 191, 255, 0.07);
-    }
-    /* Badge "mais popular" */
-    .plano-card.destaque::after {
-      content: 'MELHOR CUSTO-BENEFÍCIO'; position: absolute; top: 0; right: 0;
-      font-family: var(--font-code); font-size: 0.58rem; letter-spacing: 1px;
-      color: #000; background: var(--accent); padding: 5px 12px;
-    }
-    .plano-tipo {
-      font-family: var(--font-code); font-size: 0.6rem; color: var(--text-muted);
-      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px;
-    }
-    .plano-nome {
-      font-family: var(--font-display); font-size: 1.2rem; font-weight: 800;
-      text-transform: uppercase; margin-bottom: 14px; color: var(--text-main);
-    }
-    .plano-preco { margin-bottom: 14px; }
-    .plano-preco .valor {
-      font-family: var(--font-display); font-size: 1.8rem; font-weight: 800;
-      color: var(--accent); letter-spacing: -1px;
-    }
-    .plano-preco .periodo {
-      font-family: var(--font-code); font-size: 0.68rem; color: var(--text-muted);
-      text-transform: uppercase; letter-spacing: 1px; margin-left: 4px;
-    }
-    .plano-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
-    .plano-itens { list-style: none; margin-bottom: 24px; }
-    .plano-itens li {
-      font-size: 0.86rem; color: var(--text-secondary); padding: 8px 0;
-      border-bottom: 1px solid var(--border-subtle); display: flex; align-items: flex-start; gap: 10px;
-    }
-    .plano-itens li:last-child { border-bottom: none; }
-    .plano-itens li::before { content: '·'; color: var(--accent); font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
-    .plano-cta {
-      display: block; text-align: center;
-      min-height: 48px; line-height: 48px; padding: 0 20px;
-      font-family: var(--font-code); font-size: 0.74rem; font-weight: 700;
-      letter-spacing: 1px; text-transform: uppercase; text-decoration: none;
-      border-radius: 2px; transition: all 0.25s var(--ease-smooth);
-      touch-action: manipulation;
-    }
-    .plano-cta.primary { background: var(--accent); color: #000; }
-    .plano-cta.primary:active { opacity: 0.85; }
-    .plano-cta.outline { border: 1px solid var(--border-strong); color: var(--text-main); }
-    .plano-cta.outline:active { border-color: var(--accent-border); color: var(--accent); background: var(--accent-dim); }
-
-    .planos-obs {
-      font-family: var(--font-code); font-size: 0.76rem; color: var(--text-muted);
-      text-align: center; line-height: 1.8; padding: 18px 16px;
-      border: 1px solid var(--border-subtle); background: var(--accent-dim);
-    }
-
-    /* ══════════════════════════════════════════════════════════
-       CREDENCIAIS
-    ══════════════════════════════════════════════════════════ */
-    .cred-wrapper {
-      display: grid; grid-template-columns: 1fr;
-      gap: 2px; background: var(--accent-border); border: 1px solid var(--accent-border);
-    }
-    .cred-left {
-      background: var(--bg-card); padding: 36px 24px;
-      display: flex; flex-direction: column; gap: 28px;
-    }
-    .cred-degree {
-      font-family: var(--font-display); font-size: 1.7rem; font-weight: 800;
-      text-transform: uppercase; line-height: 1.1; margin-top: 10px; letter-spacing: -0.5px;
-    }
-    .cred-inst {
-      font-family: var(--font-code); font-size: 0.68rem; color: var(--accent);
-      letter-spacing: 2px; text-transform: uppercase; margin-top: 12px;
-    }
-    .cred-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .cred-tag {
-      font-family: var(--font-code); font-size: 0.6rem; color: var(--text-soft);
-      border: 1px solid var(--border-normal); padding: 6px 11px;
-      text-transform: uppercase; letter-spacing: 1px;
-    }
-    .cred-right {
-      background: var(--bg-card); padding: 36px 24px;
-      border-top: 2px solid var(--accent-border);
-    }
-    .cred-skills-title {
-      font-family: var(--font-display); font-size: 1rem; font-weight: 800;
-      text-transform: uppercase; margin-bottom: 24px; padding-bottom: 14px;
-      border-bottom: 1px solid var(--border-normal);
-    }
-    .skill-row { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
-    .skill-row:last-child { margin-bottom: 0; }
-    .skill-bar-wrap { flex: 1; }
-    .skill-name { font-size: 0.88rem; color: var(--text-main); margin-bottom: 7px; font-weight: 500; }
-    .skill-track {
-      height: 2px; background: var(--border-normal); width: 100%;
-      position: relative; overflow: hidden; border-radius: 1px;
-    }
-    .skill-fill {
-      position: absolute; top: 0; left: 0; height: 100%;
-      background: linear-gradient(90deg, var(--accent), rgba(0, 191, 255, 0.5));
-      width: 0; transition: width 1.6s cubic-bezier(0.22, 1, 0.36, 1);
-      box-shadow: 0 0 10px rgba(0, 191, 255, 0.4);
-    }
-    .skill-fill.animate { width: var(--w); }
-    .skill-badge {
-      font-family: var(--font-code); font-size: 0.58rem; color: var(--accent);
-      letter-spacing: 1px; white-space: nowrap; opacity: 0.6; text-transform: uppercase;
-    }
-
-    /* ══════════════════════════════════════════════════════════
-       CONTATO & CTA
-    ══════════════════════════════════════════════════════════ */
-    .contact-wrapper { max-width: 100%; }
-
-    .cta-banner {
-      background: var(--bg-card); border: 1px solid var(--accent-border);
-      padding: 36px 20px; margin-bottom: 36px; text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .cta-banner::before {
-      content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(0, 191, 255, 0.06) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .cta-banner h2 {
-      font-family: var(--font-display); font-size: clamp(1.5rem, 6vw, 2.2rem);
-      font-weight: 800; text-transform: uppercase; letter-spacing: -0.5px;
-      margin-bottom: 16px; position: relative; line-height: 1.15;
-    }
-    .cta-banner p {
-      font-size: 0.92rem; color: var(--text-muted); line-height: 1.75;
-      margin-bottom: 28px; position: relative;
-    }
-    .cta-btns {
-      display: flex; flex-direction: column; gap: 10px; position: relative;
-    }
-
-    .contact-form {
-      background: var(--bg-card); border: 1px solid var(--border-normal);
-      padding: 28px 20px; margin-bottom: 28px;
-    }
-    .form-row { margin-bottom: 20px; }
-    .form-row:last-child { margin-bottom: 0; }
-    .form-label {
-      font-family: var(--font-code); font-size: 0.68rem; color: var(--text-muted);
-      letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 8px;
-    }
-    /* font-size: 16px previne zoom automático no iOS Safari */
-    .form-input, .form-textarea {
-      width: 100%; background: rgba(0, 191, 255, 0.03); border: 1px solid var(--border-normal);
-      color: var(--text-main); font-family: var(--font-body); font-size: 16px;
-      padding: 14px 14px; outline: none;
-      transition: border-color 0.25s var(--ease-smooth), background 0.25s;
-      border-radius: 2px; min-height: 52px;
-      -webkit-appearance: none; /* remove iOS native styling */
-    }
-    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-soft); }
-    .form-input:focus, .form-textarea:focus {
-      border-color: var(--accent-border); background: rgba(0, 191, 255, 0.05);
-    }
-    .form-textarea {
-      resize: vertical; min-height: 120px;
-      font-family: var(--font-code); font-size: 15px; line-height: 1.6;
-    }
-    .form-submit {
-      width: 100%; font-family: var(--font-code); font-size: 0.78rem; letter-spacing: 1.2px;
-      text-transform: uppercase; padding: 16px; min-height: 52px;
-      border: none; background: var(--accent); color: #000; font-weight: 700;
-      cursor: pointer; transition: opacity 0.2s; border-radius: 2px;
-      touch-action: manipulation;
-    }
-    .form-submit:active { opacity: 0.85; }
-    .form-status {
-      font-size: 0.88rem; padding: 12px 14px; margin-top: 14px;
-      border-radius: 2px; text-align: center; display: none;
-      font-family: var(--font-code);
-    }
-    .form-status.ok { display: block; background: rgba(0, 191, 255, 0.1); color: var(--accent); border: 1px solid var(--accent-border); }
-    .form-status.err { display: block; background: rgba(255, 100, 100, 0.1); color: #ff6464; border: 1px solid rgba(255, 100, 100, 0.3); }
-
-    .contact-links { display: flex; flex-direction: column; gap: 10px; }
-    .contact-link {
-      display: flex; align-items: center; gap: 14px; padding: 14px 16px;
-      background: var(--bg-card); border: 1px solid var(--border-normal);
-      text-decoration: none; color: var(--text-secondary);
-      transition: all 0.25s var(--ease-smooth); border-radius: 2px;
-      min-height: 64px; /* thumb-friendly */
-      touch-action: manipulation;
-    }
-    .contact-link:active { border-color: var(--accent-border); background: rgba(0, 191, 255, 0.05); color: var(--accent); }
-    .c-icon { font-family: var(--font-code); font-size: 1.1rem; color: var(--accent); flex-shrink: 0; }
-    .c-content { flex: 1; min-width: 0; }
-    .c-label { font-family: var(--font-code); font-size: 0.62rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; display: block; margin-bottom: 3px; }
-    .c-value { font-size: 0.9rem; color: var(--text-main); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .c-arrow { font-size: 1rem; color: var(--accent); flex-shrink: 0; }
-
-    .img-whatsapp { width: 20px; height: auto; }
-
-    /* ══════════════════════════════════════════════════════════
-       SIMULATOR MODAL
-    ══════════════════════════════════════════════════════════ */
-    .sim-modal {
-      position: fixed; inset: 0; z-index: 3000; display: grid; place-items: center;
-      background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(8px);
-      opacity: 0; pointer-events: none; transition: opacity 0.25s var(--ease-smooth);
-    }
-    .sim-modal.open { opacity: 1; pointer-events: auto; }
-    .sim-modal-panel {
-      width: 100vw; height: 100vh; /* full screen no mobile */
-      border: none; background: #0a0a0a;
-      transform: translateY(8px); transition: transform 0.25s var(--ease-smooth);
-      display: grid; grid-template-rows: auto 1fr; overflow: hidden;
-    }
-    .sim-modal.open .sim-modal-panel { transform: translateY(0); }
-    .sim-head {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 16px; border-bottom: 1px solid var(--border-normal);
-      background: rgba(0, 191, 255, 0.03); font-family: var(--font-code);
-      font-size: 0.68rem; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent);
-      min-height: 48px;
-    }
-    .sim-close {
-      border: 1px solid var(--accent-border); background: transparent; color: var(--text-main);
-      cursor: pointer; min-width: 44px; min-height: 44px; border-radius: 2px;
-      font-size: 1.2rem; line-height: 1; touch-action: manipulation;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .sim-close:active { background: rgba(0, 191, 255, 0.12); }
-    .sim-iframe { width: 100%; height: 100%; border: none; background: #000; }
-
-    /* ══════════════════════════════════════════════════════════
-       FLOATING WA — polegar-friendly, safe area aware
-    ══════════════════════════════════════════════════════════ */
-    .wa-float {
-      position: fixed;
-      bottom: calc(20px + var(--safe-bottom));
-      right: 20px;
-      display: flex; align-items: center; gap: 10px;
-      padding: 13px 20px;
-      background: var(--accent); color: #000; text-decoration: none;
-      font-family: var(--font-code); font-size: 0.74rem; font-weight: 700;
-      letter-spacing: 1px; text-transform: uppercase; border-radius: 50px;
-      z-index: 500; box-shadow: 0 6px 24px rgba(0, 191, 255, 0.35);
-      touch-action: manipulation;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .wa-float:active { transform: scale(0.96); box-shadow: 0 4px 16px rgba(0, 191, 255, 0.3); }
-    .wa-dot { width: 8px; height: 8px; background: #000; border-radius: 50%; animation: pulse-dot 2s ease-in-out infinite; }
-    @keyframes pulse-dot { 0%,100%{transform:scale(1);opacity:1;} 50%{transform:scale(1.3);opacity:0.7;} }
-
-    /* ══════════════════════════════════════════════════════════
-       FOOTER
-    ══════════════════════════════════════════════════════════ */
-    footer {
-      padding: 28px 20px;
-      padding-bottom: calc(28px + var(--safe-bottom));
-      border-top: 1px solid var(--border-subtle);
-      display: flex; flex-direction: column; align-items: center; gap: 10px;
-      font-family: var(--font-code); font-size: 0.7rem; color: var(--text-muted); text-align: center;
-    }
-    .footer-dot { width: 4px; height: 4px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 6px var(--accent); }
-
-    /* ══════════════════════════════════════════════════════════
-       ANIMATIONS
-    ══════════════════════════════════════════════════════════ */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ══════════════════════════════════════════════════════════
-       DESKTOP — 768px+
-    ══════════════════════════════════════════════════════════ */
-    @media (min-width: 768px) {
-      nav { padding: 16px 40px; }
-      nav.scrolled { padding: 12px 40px; }
-      .nav-links { display: flex; gap: 32px; align-items: center; }
-      .nav-links a {
-        color: var(--text-muted); text-decoration: none;
-        font-size: 0.73rem; text-transform: uppercase;
-        letter-spacing: 1.5px; font-family: var(--font-code);
-        transition: color 0.3s var(--ease-smooth);
-        position: relative; padding-bottom: 6px;
+    /* Reset using :where() to lower specificity */
+    @layer reset {
+      *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-      .nav-links a::after {
-        content: ''; position: absolute; bottom: 0; left: 0;
-        width: 0; height: 2px;
-        background: linear-gradient(90deg, var(--accent), transparent);
-        transition: width 0.4s var(--ease-smooth);
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+        font-size: 16px;
       }
-      .nav-links a:hover, .nav-links a.active { color: var(--accent); }
-      .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-      .hamburger { display: none; }
-
-      /* Hero: lado a lado no tablet+ */
-      .hero { flex-direction: row; min-height: 100vh; }
-      .hero-image-container {
-        flex: 0 0 45%; order: 1;
-        border-left: 1px solid var(--accent-border);
+      body {
+        margin: 0;
+        min-width: 0;
+        -webkit-tap-highlight-color: transparent;
       }
-      .hero-image-container::before {
-        /* remove gradient bottom no desktop, coloca lateral */
+      img, picture, video, canvas, svg {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+      input, button, textarea, select {
+        font: inherit;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      a[href] {
+        cursor: pointer;
+      }
+      button {
+        cursor: pointer;
+        border: none;
         background: none;
       }
+    }
+
+    /* Base styles */
+    @layer base {
+      :root {
+        /* Color tokens */
+        --bg-dark:        #050505;
+        --bg-surface:     #0a0a0a;
+        --bg-card:        #0f0f0f;
+        --accent:         #00BFFF;
+        --accent-dim:     rgba(0, 191, 255, 0.08);
+        --accent-mid:     rgba(0, 191, 255, 0.18);
+        --accent-bright:  rgba(0, 191, 255, 0.35);
+        --accent-border:  rgba(0, 191, 255, 0.25);
+        --text-main:      #ffffff;
+        --text-secondary: #e0e0e0;
+        --text-muted:     #808080;
+        --text-soft:      #606060;
+        --border-subtle:  rgba(255, 255, 255, 0.05);
+        --border-normal:  rgba(255, 255, 255, 0.08);
+        --border-strong:  rgba(255, 255, 255, 0.14);
+        --success:        #00FFA3;
+        --warning:        #FFB800;
+        --error:          #FF6B6B;
+
+        /* Light mode overrides (applied when .light class on html) */
+        --bg-dark-light:  #ffffff;
+        --bg-surface-light: #f8f9fa;
+        --bg-card-light:  #ffffff;
+        --accent-light:   #0066FF;
+        --text-main-light:#1a1a1a;
+        --text-secondary-light:#4a4a4a;
+        --text-muted-light:#6a6a6a;
+        --border-subtle-light:rgba(0,0,0,0.05);
+        --border-normal-light:rgba(0,0,0,0.1);
+        --border-strong-light:rgba(0,0,0,0.15);
+
+        /* Typography */
+        --font-display:   'Syne', sans-serif;
+        --font-body:      'Inter', sans-serif;
+        --font-code:      'JetBrains Mono', monospace;
+        --font-size-base: 1rem;
+        --font-size-sm:   0.875rem;
+        --font-size-lg:   1.125rem;
+        --font-size-xl:   1.25rem;
+        --font-size-2xl:  1.5rem;
+        --font-size-3xl:  1.875rem;
+        --font-size-4xl:  2.25rem;
+        --font-size-5xl:  3rem;
+        --font-size-6xl:  3.75rem;
+      body::before {
+        content: '';
+        position: fixed; inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+        opacity: 0.02; pointer-events: none; z-index: 9999;
+      }
+
+        /* Spacing */
+        --space-0:        0px;
+        --space-1:        4px;
+        --space-2:        8px;
+        --space-3:        12px;
+        --space-4:        16px;
+        --space-5:        20px;
+        --space-6:        24px;
+        --space-7:        28px;
+        --space-8:        32px;
+        --space-9:        36px;
+        --space-10:       40px;
+        --space-11:       44px;
+        --space-12:       48px;
+        --space-14:       56px;
+        --space-16:       64px;
+        --space-20:       80px;
+        --space-24:       96px;
+        --space-32:       128px;
+
+        /* Radius */
+        --radius-none:    0px;
+        --radius-sm:      2px;
+        --radius-md:      4px;
+        --radius-lg:      8px;
+        --radius-full:    9999px;
+
+        /* Shadows */
+        --shadow-sm:      0 1px 3px rgba(0,0,0,0.1);
+        --shadow-md:      0 4px 6px rgba(0,0,0,0.1);
+        --shadow-lg:      0 10px 15px rgba(0,0,0,0.1);
+        --shadow-xl:      0 20px 25px rgba(0,0,0,0.15);
+        --shadow-2xl:     0 25px 50px rgba(0,0,0,0.25);
+
+        /* Transitions */
+        --ease-smooth:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --ease-bounce:    cubic-bezier(0.34, 1.56, 0.64, 1);
+        --transition-default: 0.25s var(--ease-smooth);
+
+        /* Safe area env vars */
+        --safe-left:  env(safe-area-inset-left, 0px);
+        --safe-right: env(safe-area-inset-right, 0px);
+        --safe-top:   env(safe-area-inset-top, 0px);
+        --safe-bottom:env(safe-area-inset-bottom, 0px);
+      }
+
+      /* Light mode class */
+      html.light {
+        --bg-dark:        var(--bg-dark-light);
+        --bg-surface:     var(--bg-surface-light);
+        --bg-card:        var(--bg-card-light);
+        --accent:         var(--accent-light);
+        --accent-dim:     rgba(0, 102, 255, 0.08);
+        --accent-mid:     rgba(0, 102, 255, 0.18);
+        --accent-bright:  rgba(0, 102, 255, 0.35);
+        --accent-border:  rgba(0, 102, 255, 0.25);
+        --text-main:      var(--text-main-light);
+        --text-secondary: var(--text-secondary-light);
+        --text-muted:     var(--text-muted-light);
+        --text-soft:      var(--text-muted-light);
+        --border-subtle:  var(--border-subtle-light);
+        --border-normal:  var(--border-normal-light);
+        --border-strong:  var(--border-strong-light);
+        --shadow-sm:      0 1px 3px rgba(0,0,0,0.05);
+        --shadow-md:      0 4px 6px rgba(0,0,0,0.08);
+        --shadow-lg:      0 10px 15px rgba(0,0,0,0.1);
+        --shadow-xl:      0 20px 25px rgba(0,0,0,0.12);
+        --shadow-2xl:     0 25px 50px rgba(0,0,0,0.15);
+      }
+
+      html {
+        background: var(--bg-dark);
+        color: var(--text-main);
+        font-family: var(--font-body);
+        font-size: var(--font-size-base);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      body {
+        background: var(--bg-dark);
+        color: var(--text-main);
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-display);
+        font-weight: 800;
+        line-height: 1.2;
+        color: var(--text-main);
+        margin-block: 0;
+      }
+      h1 { font-size: var(--font-size-5xl); }
+      h2 { font-size: var(--font-size-4xl); }
+      h3 { font-size: var(--font-size-3xl); }
+      h4 { font-size: var(--font-size-2xl); }
+      h5 { font-size: var(--font-size-xl); }
+      h6 { font-size: var(--font-size-lg); }
+
+      p {
+        margin-bottom: var(--space-4);
+        line-height: 1.7;
+      }
+      a {
+        color: var(--text-main);
+        transition: color var(--transition-default);
+      }
+      a:hover {
+        color: var(--accent);
+      }
+
+      /* Focus styles for accessibility */
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      :focus:not(:focus-visible) {
+        outline: none;
+      }
+    }
+
+    /* Components */
+    @layer components {
+      /* Container */
+      .container {
+        width: 100%;
+        max-width: 1440px;
+        margin-inline: auto;
+        padding-inline: var(--space-4);
+      }
+
+      /* Button */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-2);
+        font-family: var(--font-code);
+        font-weight: 600;
+        font-size: var(--font-size-sm);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        transition: all var(--transition-default);
+        touch-action: manipulation;
+        text-decoration: none;
+        border: none;
+        min-height: 3rem;
+        padding-inline: var(--space-5);
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #000;
+      }
+      .btn-primary:hover {
+        background: var(--accent-bright);
+        transform: translateY(-2px);
+        box-shadow: 0 0 12px rgba(0,191,255,0.4);
+      }
+      .btn-primary:active {
+        transform: translateY(0);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--text-main);
+        border: 1px solid var(--border-normal);
+      }
+      .btn-outline:hover {
+        background: var(--accent-dim);
+        color: var(--accent);
+        border-color: var(--accent-border);
+      }
+      .btn-outline:active {
+        background: var(--accent-mid);
+      }
+      .btn-secondary {
+        background: var(--bg-surface);
+        color: var(--text-main);
+        border: 1px solid var(--border-normal);
+      }
+      .btn-secondary:hover {
+        background: var(--bg-card);
+      }
+
+      /* Input */
+      .input {
+        width: 100%;
+        padding: var(--space-3) var(--space-4);
+        font-family: var(--font-body);
+        font-size: var(--font-size-base);
+        color: var(--text-main);
+        background: rgba(0,191,255,0.03);
+        border: 1px solid var(--border-normal);
+        border-radius: var(--radius-md);
+        transition: border-color var(--transition-default), background var(--transition-default);
+        appearance: none;
+      }
+      .input:focus {
+        outline: none;
+        border-color: var(--accent-border);
+        background: rgba(0,191,255,0.05);
+      }
+      .input::placeholder {
+        color: var(--text-soft);
+      }
+
+      /* Textarea */
+      .textarea {
+        width: 100%;
+        padding: var(--space-3) var(--space-4);
+        font-family: var(--font-body);
+        font-size: var(--font-size-base);
+        color: var(--text-main);
+        background: rgba(0,191,255,0.03);
+        border: 1px solid var(--border-normal);
+        border-radius: var(--radius-md);
+        resize: vertical;
+        min-height: 8rem;
+        transition: border-color var(--transition-default), background var(--transition-default);
+        appearance: none;
+      }
+      .textarea:focus {
+        outline: none;
+        border-color: var(--accent-border);
+        background: rgba(0,191,255,0.05);
+      }
+      .textarea::placeholder {
+        color: var(--text-soft);
+      }
+
+      /* Select */
+      .select {
+        width: 100%;
+        padding: var(--space-3) var(--space-4);
+        font-family: var(--font-body);
+        font-size: var(--font-size-base);
+        color: var(--text-main);
+        background: rgba(0,191,255,0.03);
+        border: 1px solid var(--border-normal);
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        transition: border-color var(--transition-default), background var(--transition-default);
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23808080' stroke-width='1.2' fill='none'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right var(--space-3) center;
+        background-size: 0.65rem;
+      }
+      .select:focus {
+        outline: none;
+        border-color: var(--accent-border);
+        background: rgba(0,191,255,0.05);
+      }
+
+      /* Label */
+      .label {
+        display: block;
+        margin-bottom: var(--space-2);
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text-muted);
+      }
+
+      /* Badge */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-1);
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: var(--space-1) var(--space-3);
+        border-radius: var(--radius-md);
+      }
+      .badge-accent {
+        background: var(--accent-dim);
+        color: var(--accent);
+      }
+      .badge-outline {
+        background: transparent;
+        color: var(--text-main);
+        border: 1px solid var(--border-normal);
+      }
+
+      /* Card */
+      .card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-normal);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition: all var(--transition-default);
+      }
+      .card:hover {
+        background: #161616;
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+      }
+      .card:active {
+        transform: translateY(0);
+      }
+
+      /* Nav */
+      .navbar {
+        position: fixed;
+        inset-inline: 0;
+        top: var(--space-0);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-3) var(--space-4);
+        padding-inline: calc(var(--space-4) + var(--safe-left)) calc(var(--space-4) + var(--safe-right));
+        background: rgba(5,5,5,0.88);
+        backdrop-filter: blur(16px) saturate(1.2);
+        border-bottom: 1px solid var(--border-subtle);
+        transition: all var(--transition-default);
+      }
+      .navbar.scrolled {
+        background: rgba(5,5,5,0.96);
+        border-bottom-color: var(--border-normal);
+        box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      }
+      .navbar .logo {
+        font-family: var(--font-display);
+        font-size: var(--font-size-lg);
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, var(--text-main), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .navbar .nav-links {
+        display: none;
+        gap: var(--space-5);
+        align-items: center;
+      }
+      .navbar .nav-links a {
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text-muted);
+        position: relative;
+        padding-block: var(--space-2);
+        transition: color var(--transition-default);
+      }
+      .navbar .nav-links a:hover,
+      .navbar .nav-links a.active {
+        color: var(--accent);
+      }
+      .navbar .nav-links a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 4px;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent), transparent);
+        transition: width var(--transition-default);
+      }
+      .navbar .nav-links a:hover::after,
+      .navbar .nav-links a.active::after {
+        width: 100%;
+      }
+      .navbar .theme-toggle {
+        display: flex;
+        min-width: 3rem;
+        min-height: 3rem;
+        align-items: center;
+        gap: var(--space-1);
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+        cursor: pointer;
+        padding: var(--space-3);
+        border-radius: var(--radius-md);
+        transition: background var(--transition-default), color var(--transition-default);
+      }
+      .navbar .theme-toggle:hover {
+        background: var(--accent-dim);
+        color: var(--accent);
+      }
+
+      /* Hamburger */
+      .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--space-1);
+        width: 3rem;
+        height: 3rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: var(--space-2);
+      }
+      .hamburger span {
+        display: block;
+        width: 1.5rem;
+        height: 2px;
+        background: var(--text-main);
+        transition: all var(--transition-default);
+        border-radius: var(--radius-none);
+      }
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(4px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-4px) rotate(-45deg);
+      }
+
+      /* Mobile menu */
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(5,5,5,0.98);
+        z-index: 999;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 0 calc(var(--space-6) + var(--safe-left));
+        backdrop-filter: blur(8px);
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu a {
+        display: block;
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 9vw, 2.8rem);
+        font-weight: 800;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        text-decoration: none;
+        letter-spacing: 1px;
+        padding-block: var(--space-4);
+        width: 100%;
+        border-bottom: 1px solid var(--border-normal);
+        transition: color var(--transition-default);
+      }
+      .mobile-menu a:last-child {
+        border-bottom: none;
+      }
+      .mobile-menu a:active {
+        color: var(--accent);
+      }
+
+      /* Hero */
+      .hero {
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        border-bottom: 1px solid var(--border-subtle);
+        overflow: hidden;
+      }
+      .hero-image-container {
+        flex: 0 0 44vh;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      .hero-image-container::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60%;
+        background: linear-gradient(to top, var(--bg-dark) 0%, transparent 100%);
+        z-index: 3;
+      }
       .hero-image-container::after {
+        content: '';
+        position: absolute;
+        inset: 0;
         background:
-          radial-gradient(ellipse 70% 70% at 50% 85%, rgba(0, 191, 255, 0.08) 0%, transparent 65%),
-          radial-gradient(ellipse 50% 40% at 50% 100%, rgba(0, 191, 255, 0.06) 0%, transparent 55%);
+          radial-gradient(ellipse 80% 60% at 50% 90%, rgba(0,191,255,0.1) 0%, transparent 65%);
+        z-index: 2;
+        pointer-events: none;
       }
       .hero-image-container img {
-        object-position: top center;
-        transform: scale(1.08);
+        display: block;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center 10%;
+        position: relative;
+        z-index: 1;
+        filter: drop-shadow(0 0 24px rgba(0,191,255,0.3));
+        animation: neon-pulse 3.8s ease-in-out infinite alternate;
+      }
+      @keyframes neon-pulse {
+        from { filter: drop-shadow(0 0 16px rgba(0,191,255,0.25)) drop-shadow(0 0 40px rgba(0,191,255,0.08)); }
+        to   { filter: drop-shadow(0 0 28px rgba(0,191,255,0.45)) drop-shadow(0 0 70px rgba(0,191,255,0.15)); }
       }
       .hero-content {
-        flex: 0 0 55%; order: 0;
-        padding: 130px 60px 80px 48px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: var(--space-5) var(--space-4) var(--space-7) var(--space-4);
+        padding-inline: calc(var(--space-4) + var(--safe-left)) calc(var(--space-4) + var(--safe-right));
+        position: relative;
+        z-index: 2;
       }
-      .hero h1 { font-size: clamp(3rem, 5.5vw, 5.8rem); margin-bottom: 20px; letter-spacing: -2px; }
-      .hero-tagline { font-size: 1rem; }
-      .hero-sub { font-size: 0.88rem; }
-      .hero-cta-group { flex-direction: row; margin-top: 40px; }
-      .btn-primary, .btn-outline { width: auto; }
+      .hero-content::before {
+        content: '';
+        position: absolute;
+        bottom: -12%;
+        left: -12%;
+        width: 24rem;
+        height: 24rem;
+        background: radial-gradient(circle, rgba(0,191,255,0.04) 0%, transparent 65%);
+        pointer-events: none;
+        z-index: 0;
+        animation: orb-drift 14s ease-in-out infinite alternate;
+      }
+      @keyframes orb-drift {
+        from { transform: translate(0,0) scale(1); }
+        to   { transform: translate(16px, -16px) scale(1.1); }
+      }
+      .terminal-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-1);
+        padding: var(--space-1) var(--space-3);
+        background: var(--accent-dim);
+        color: var(--accent);
+        border: 1px solid var(--accent-border);
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        margin-bottom: var(--space-4);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border-radius: var(--radius-md);
+        position: relative;
+        z-index: 1;
+      }
+      .terminal-badge::before {
+        content: '';
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background: var(--accent);
+        flex-shrink: 0;
+        animation: blink 1.3s step-end infinite;
+        box-shadow: 0 0 6px var(--accent);
+      }
+      @keyframes blink {
+        50% { opacity: 0.3; }
+      }
+      .hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 10vw, 3.6rem);
+        font-weight: 800;
+        line-height: 1.0;
+        text-transform: uppercase;
+        margin-bottom: var(--space-3);
+        letter-spacing: -1.5px;
+        opacity: 0;
+        animation: fadeInUp 0.8s 0.15s var(--ease-smooth) forwards;
+        position: relative;
+        z-index: 1;
+      }
+      .hero h1 .accent { color: var(--accent); }
+      .hero-tagline {
+        font-size: var(--font-size-lg);
+        color: var(--text-secondary);
+        line-height: 1.7;
+        margin-bottom: var(--space-3);
+        opacity: 0;
+        animation: fadeInUp 0.8s 0.28s var(--ease-smooth) forwards;
+        position: relative;
+        z-index: 1;
+      }
+      .hero-sub {
+        font-family: var(--font-code);
+        font-weight: 300;
+        color: var(--text-muted);
+        font-size: var(--font-size-sm);
+        line-height: 1.85;
+        min-height: 3.2em;
+        opacity: 0;
+        animation: fadeInUp 0.8s 0.38s var(--ease-smooth) forwards;
+        position: relative;
+        z-index: 1;
+      }
+      .cursor-char {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        background: var(--accent);
+        vertical-align: text-bottom;
+        animation: blink 1s step-end infinite;
+        margin-left: var(--space-1);
+      }
+      .hero-cta-group {
+        margin-top: var(--space-6);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+        opacity: 0;
+        animation: fadeInUp 0.8s 0.48s var(--ease-smooth) forwards;
+        position: relative;
+        z-index: 1;
+      }
 
-      section { padding: 80px 48px; }
-      .section-title { font-size: clamp(2.2rem, 3.8vw, 3.2rem); }
-      .section-desc { font-size: 1rem; }
+      /* Sections */
+      section {
+        padding: var(--space-8) var(--space-4);
+        padding-inline: calc(var(--space-4) + var(--safe-left)) calc(var(--space-4) + var(--safe-right));
+        position: relative;
+        z-index: 1;
+      }
+      section:nth-child(odd) {
+        background: var(--bg-dark);
+      }
+      section:nth-child(even) {
+        background: var(--bg-surface);
+      }
+      #dor { background: var(--bg-dark); border-bottom: 1px solid var(--border-subtle); }
+      #porque { background: var(--bg-surface); }
+      #comofunciona { background: var(--bg-dark); }
+      #servicos { background: var(--bg-surface); }
+      #credenciais { background: var(--bg-dark); }
+      #contato { background: var(--bg-surface); border-top: 1px solid var(--border-subtle); }
 
-      .dor-grid { grid-template-columns: repeat(2, 1fr); }
-      .dor-card { padding: 32px 28px; }
-      .dor-intro { font-size: 1.15rem; }
+      .section-eyebrow {
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        color: var(--accent);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: var(--space-2);
+      }
+      .section-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem, 7vw, 2.6rem);
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: var(--space-3);
+        line-height: 1.05;
+        letter-spacing: -0.5px;
+      }
+      .section-title .muted { color: var(--text-muted); }
+      .section-desc {
+        font-size: var(--font-size-lg);
+        color: var(--text-secondary);
+        line-height: 1.75;
+        margin-bottom: var(--space-6);
+      }
 
-      .porque-grid { grid-template-columns: 1fr 1fr; gap: 52px; align-items: center; }
-      .diferenca-table { min-width: unset; }
-      .table-scroll-wrap { overflow-x: visible; background: none; }
-      .table-scroll-hint { display: none; }
+      /* Fade-in */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(var(--space-3));
+        transition: opacity 0.6s var(--ease-smooth), transform 0.6s var(--ease-smooth);
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
-      .etapas-wrapper { grid-template-columns: repeat(2, 1fr); }
+      /* Dor */
+      .dor-intro {
+        font-size: var(--font-size-lg);
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin-bottom: var(--space-6);
+        font-weight: 300;
+      }
+      .dor-intro strong { color: var(--text-main); font-weight: 600; }
+      .dor-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2px;
+        background: var(--accent-border);
+        border: 1px solid var(--accent-border);
+        margin-bottom: var(--space-5);
+      }
+      .dor-card {
+        background: var(--bg-card);
+        padding: var(--space-5) var(--space-4);
+        transition: background var(--transition-default);
+        position: relative;
+        overflow: hidden;
+      }
+      .dor-card:active { background: #161616; }
+      .dor-card-num {
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        color: var(--accent);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: var(--space-2);
+        opacity: 0.6;
+      }
+      .dor-card h3 {
+        font-family: var(--font-display);
+        font-size: var(--font-size-lg);
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: var(--space-2);
+        color: var(--text-main);
+      }
+      .dor-card p {
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+        line-height: 1.7;
+      }
+      .dor-callout {
+        border-left: 3px solid var(--accent);
+        padding: var(--space-3) var(--space-4);
+        background: var(--accent-dim);
+      }
+      .dor-callout p {
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        color: var(--accent);
+        line-height: 1.7;
+        font-style: italic;
+      }
 
-      .planos-grid { grid-template-columns: repeat(2, 1fr); }
+      /* Porque */
+      .porque-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+      }
+      .porque-left h2 {
+        font-family: var(--font-display);
+        font-size: clamp(1.6rem, 6.5vw, 2.4rem);
+        font-weight: 800;
+        text-transform: uppercase;
+        line-height: 1.1;
+        letter-spacing: -0.5px;
+        margin-bottom: var(--space-3);
+      }
+      .porque-left h2 .accent { color: var(--accent); }
+      .porque-left p {
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+        line-height: 1.8;
+        margin-bottom: var(--space-2);
+      }
+      .table-scroll-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid var(--border-normal);
+        border-radius: var(--radius-md);
+        background:
+          linear-gradient(to right, var(--bg-card) var(--space-3), transparent calc(var(--space-3) * 2.5)),
+          linear-gradient(to left,  var(--bg-card) var(--space-3), transparent calc(var(--space-3) * 2.5)),
+          var(--bg-card);
+        background-attachment: local, local, scroll;
+      }
+      .table-scroll-hint {
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+        letter-spacing: 1px;
+        text-align: right;
+        padding: var(--space-1) var(--space-3) calc(var(--space-1) * 1.5);
+        text-transform: uppercase;
+      }
+      .diferenca-table {
+        min-width: 480px;
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .diferenca-table th {
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        padding: var(--space-2) var(--space-3);
+        text-align: left;
+        border-bottom: 1px solid var(--border-normal);
+        white-space: nowrap;
+      }
+      .diferenca-table th:first-child { color: var(--text-muted); }
+      .diferenca-table th:last-child  { color: var(--accent); }
+      .diferenca-table td {
+        padding: var(--space-2) var(--space-3);
+        font-size: var(--font-size-sm);
+        border-bottom: 1px solid var(--border-subtle);
+        vertical-align: top;
+        line-height: 1.5;
+      }
+      .diferenca-table td:first-child { color: var(--text-muted); font-size: var(--font-size-sm); white-space: nowrap; }
+      .diferenca-table td:last-child  { color: var(--text-main); }
+      .diferenca-table tr:last-child td { border-bottom: none; }
+      .check { color: var(--accent); margin-right: var(--space-1); }
 
-      .cred-wrapper { grid-template-columns: 1fr 2fr; }
-      .cred-left { padding: 48px 40px; }
-      .cred-right { padding: 48px 40px; border-top: none; border-left: 2px solid var(--accent-border); }
+      /* Como funciona */
+      .etapas-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2px;
+        background: var(--accent-border);
+        border: 1px solid var(--accent-border);
+      }
+      .etapa {
+        background: var(--bg-card);
+        padding: var(--space-5) var(--space-4);
+        position: relative;
+        overflow: hidden;
+        transition: background var(--transition-default);
+      }
+      .etapa::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent), transparent);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .etapa:active { background: #141414; }
+      .etapa:active::before { opacity: 1; }
+      .etapa-num {
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        color: var(--accent);
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        margin-bottom: var(--space-2);
+      }
+      .etapa h3 {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        font-size: var(--font-size-lg);
+        margin-bottom: var(--space-2);
+        color: var(--text-main);
+      }
+      .etapa p {
+        color: var(--text-muted);
+        font-size: var(--font-size-sm);
+        line-height: 1.7;
+      }
+      .sim-inline-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-normal);
+        padding: var(--space-5) var(--space-4);
+        cursor: pointer;
+        transition: all var(--transition-default);
+        touch-action: manipulation;
+      }
+      .sim-inline-card:active { border-color: var(--accent-border); background: #141414; }
+      .sim-label {
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        color: var(--accent);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: var(--space-2);
+        opacity: 0.7;
+      }
+      .sim-inline-card h3 {
+        font-family: var(--font-display);
+        font-size: var(--font-size-lg);
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: var(--space-2);
+      }
+      .sim-inline-card p {
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+        line-height: 1.7;
+        margin-bottom: var(--space-4);
+      }
 
-      .cta-banner { padding: 48px 40px; }
-      .cta-btns { flex-direction: row; justify-content: center; }
-      .contact-form { padding: 40px; }
-      .form-input, .form-textarea { font-size: 0.95rem; min-height: auto; }
-      .form-textarea { font-size: 0.85rem; }
+      /* Serviços & Planos */
+      .planos-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+        margin-bottom: var(--space-4);
+      }
+      .plano-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-normal);
+        padding: var(--space-6) var(--space-4);
+        position: relative;
+        overflow: hidden;
+        transition: all var(--transition-default);
+      }
+      .plano-card.destaque {
+        border-color: var(--accent-border);
+        background: linear-gradient(160deg, #0f1a1f, var(--bg-card));
+        box-shadow: 0 0 32px rgba(0,191,255,0.07);
+      }
+      .plano-card.destaque::after {
+        content: 'MELHOR CUSTO-BENEFÍCIO';
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        letter-spacing: 1px;
+        color: #000;
+        background: var(--accent);
+        padding: var(--space-1) var(--space-3);
+      }
+      .plano-tipo {
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: var(--space-1);
+      }
+      .plano-nome {
+        font-family: var(--font-display);
+        font-size: var(--font-size-xl);
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: var(--space-2);
+        color: var(--text-main);
+      }
+      .plano-preco {
+        margin-bottom: var(--space-2);
+      }
+      .plano-preco .valor {
+        font-family: var(--font-display);
+        font-size: var(--font-size-3xl);
+        font-weight: 800;
+        color: var(--accent);
+        letter-spacing: -1px;
+      }
+      .plano-preco .periodo {
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-left: var(--space-1);
+      }
+      .plano-desc {
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+        line-height: 1.7;
+        margin-bottom: var(--space-4);
+      }
+      .plano-itens {
+        list-style: none;
+        margin-bottom: var(--space-4);
+      }
+      .plano-itens li {
+        font-size: var(--font-size-sm);
+        color: var(--text-secondary);
+        padding-block: var(--space-1);
+        border-bottom: 1px solid var(--border-subtle);
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-2);
+      }
+      .plano-itens li:last-child { border-bottom: none; }
+      .plano-itens li::before {
+        content: '·';
+        color: var(--accent);
+        font-size: 1.2rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .plano-cta {
+        display: block;
+        text-align: center;
+        min-height: 3rem;
+        line-height: 3rem;
+        padding-inline: var(--space-4);
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-decoration: none;
+        border-radius: var(--radius-md);
+        transition: all var(--transition-default);
+        touch-action: manipulation;
+      }
+      .plano-cta.primary { background: var(--accent); color: #000; }
+      .plano-cta.primary:active { opacity: 0.85; }
+      .plano-cta.outline { border: 1px solid var(--border-strong); color: var(--text-main); }
+      .plano-cta.outline:active { border-color: var(--accent-border); color: var(--accent); background: var(--accent-dim); }
+      .planos-obs {
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+        text-align: center;
+        line-height: 1.8;
+        padding: var(--space-3) var(--space-3);
+        border: 1px solid var(--border-subtle);
+        background: var(--accent-dim);
+      }
 
-      .wa-float { bottom: 28px; right: 28px; }
-      footer { flex-direction: row; justify-content: center; padding: 36px 48px; }
+      /* Credenciais */
+      .cred-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2px;
+        background: var(--accent-border);
+        border: 1px solid var(--accent-border);
+      }
+      .cred-left {
+        background: var(--bg-card);
+        padding: var(--space-6) var(--space-4);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+      }
+      .cred-degree {
+        font-family: var(--font-display);
+        font-size: var(--font-size-2xl);
+        font-weight: 800;
+        text-transform: uppercase;
+        line-height: 1.1;
+        margin-top: var(--space-2);
+        letter-spacing: -0.5px;
+      }
+      .cred-inst {
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        color: var(--accent);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-top: var(--space-2);
+      }
+      .cred-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-1);
+      }
+      .cred-tag {
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        color: var(--text-soft);
+        border: 1px solid var(--border-normal);
+        padding: var(--space-1) var(--space-2);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .cred-right {
+        background: var(--bg-card);
+        padding: var(--space-6) var(--space-4);
+        border-top: 2px solid var(--accent-border);
+      }
+      .cred-skills-title {
+        font-family: var(--font-display);
+        font-size: var(--font-size-lg);
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: var(--space-3);
+        padding-bottom: var(--space-2);
+        border-bottom: 1px solid var(--border-normal);
+      }
+      .skill-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        margin-bottom: var(--space-3);
+      }
+      .skill-row:last-child { margin-bottom: 0; }
+      .skill-bar-wrap { flex: 1; }
+      .skill-name {
+        font-size: var(--font-size-sm);
+        color: var(--text-main);
+        margin-bottom: var(--space-1);
+        font-weight: 500;
+      }
+      .skill-track {
+        height: 2px;
+        background: var(--border-normal);
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius-none);
+      }
+      .skill-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), rgba(0,191,255,0.5));
+        width: 0;
+        transition: width 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+        box-shadow: 0 0 10px rgba(0,191,255,0.4);
+      }
+      .skill-fill.animate { width: var(--w); }
+      .skill-badge {
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        color: var(--accent);
+        letter-spacing: 1px;
+        white-space: nowrap;
+        opacity: 0.6;
+        text-transform: uppercase;
+      }
+
+      /* Contato & CTA */
+      .contact-wrapper { max-width: 100%; }
+      .cta-banner {
+        background: var(--bg-card);
+        border: 1px solid var(--accent-border);
+        padding: var(--space-6) var(--space-4);
+        margin-bottom: var(--space-6);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-banner::before {
+        content: '';
+        position: absolute;
+        top: -16rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20rem;
+        height: 20rem;
+        background: radial-gradient(circle, rgba(0,191,255,0.06) 0%, transparent 65%);
+        pointer-events: none;
+      }
+      .cta-banner h2 {
+        font-family: var(--font-display);
+        font-size: clamp(1.4rem, 6vw, 2.2rem);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: -0.5px;
+        margin-bottom: var(--space-3);
+        position: relative;
+        line-height: 1.15;
+      }
+      .cta-banner p {
+        font-size: var(--font-size-lg);
+        color: var(--text-muted);
+        line-height: 1.75;
+        margin-bottom: var(--space-5);
+        position: relative;
+      }
+      .cta-btns {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+        position: relative;
+      }
+      .contact-form {
+        background: var(--bg-card);
+        border: 1px solid var(--border-normal);
+        padding: var(--space-5) var(--space-4);
+        margin-bottom: var(--space-5);
+      }
+      .form-row {
+        margin-bottom: var(--space-4);
+      }
+      .form-row:last-child { margin-bottom: 0; }
+      .form-label {
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: var(--space-1);
+      }
+      .form-input,
+      .form-textarea {
+        width: 100%;
+        background: rgba(0,191,255,0.03);
+        border: 1px solid var(--border-normal);
+        color: var(--text-main);
+        font-family: var(--font-body);
+        font-size: 16px;
+        padding: var(--space-3) var(--space-3);
+        outline: none;
+        transition: border-color var(--transition-default), background var(--transition-default);
+        border-radius: var(--radius-md);
+        min-height: 3rem;
+        -webkit-appearance: none;
+      }
+      .form-input::placeholder,
+      .form-textarea::placeholder { color: var(--text-soft); }
+      .form-input:focus,
+      .form-textarea:focus {
+        border-color: var(--accent-border);
+        background: rgba(0,191,255,0.05);
+      }
+      .form-textarea {
+        resize: vertical;
+        min-height: 6.4rem;
+        font-family: var(--font-code);
+        font-size: 15px;
+        line-height: 1.6;
+      }
+      .form-submit {
+        width: 100%;
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        padding: var(--space-3);
+        min-height: 2.8rem;
+        border: none;
+        background: var(--accent);
+        color: #000;
+        font-weight: 700;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        border-radius: var(--radius-md);
+        touch-action: manipulation;
+      }
+      .form-submit:active { opacity: 0.85; }
+      .form-status {
+        font-size: var(--font-size-sm);
+        padding: var(--space-2) var(--space-3);
+        margin-top: var(--space-2);
+        border-radius: var(--radius-md);
+        text-align: center;
+        display: none;
+        font-family: var(--font-code);
+      }
+      .form-status.ok { display: block; background: rgba(0,191,255,0.1); color: var(--accent); border: 1px solid var(--accent-border); }
+      .form-status.err { display: block; background: rgba(255,100,100,0.1); color: #ff6464; border: 1px solid rgba(255,100,100,0.3); }
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+      }
+      .contact-link {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-3);
+        background: var(--bg-card);
+        border: 1px solid var(--border-normal);
+        text-decoration: none;
+        color: var(--text-secondary);
+        transition: all var(--transition-default);
+        border-radius: var(--radius-md);
+        min-height: 3.6rem;
+        touch-action: manipulation;
+      }
+      .contact-link:active { border-color: var(--accent-border); background: rgba(0,191,255,0.05); color: var(--accent); }
+      .c-icon {
+        font-family: var(--font-code);
+        font-size: 1.2rem;
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+      .c-content { flex: 1; min-width: 0; }
+      .c-label {
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: var(--space-1);
+      }
+      .c-value {
+        font-size: var(--font-size-lg);
+        color: var(--text-main);
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .c-arrow {
+        font-size: 1.2rem;
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+      .img-whatsapp { width: 1.2rem; height: auto; }
+
+      /* Simulator Dialog */
+      dialog[simulator] {
+        position: fixed;
+        inset: 0;
+        z-index: 3000;
+        display: grid;
+        place-items: center;
+        background: rgba(5,5,5,0.95);
+        backdrop-filter: blur(8px);
+        border: none;
+        padding: 0;
+        margin: 0;
+      }
+      dialog[simulator]::backdrop {
+        background: rgba(5,5,5,0.8);
+      }
+      dialog[simulator] .sim-panel {
+        width: 100vw;
+        height: 100vh;
+        max-width: 90vw;
+        max-height: 90vh;
+        border: 1px solid var(--accent-border);
+        background: #0a0a0a;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        overflow: hidden;
+        transform: translateY(8px);
+        transition: transform var(--transition-default);
+      }
+      dialog[simulator]:open .sim-panel {
+        transform: translateY(0);
+      }
+      dialog[simulator] .sim-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--space-2) var(--space-3);
+        border-bottom: 1px solid var(--border-normal);
+        background: rgba(0,191,255,0.03);
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: var(--accent);
+        min-height: 2.8rem;
+      }
+      dialog[simulator] .sim-close {
+        border: 1px solid var(--accent-border);
+        background: transparent;
+        color: var(--text-main);
+        cursor: pointer;
+        min-width: 3.6rem;
+        min-height: 3.6rem;
+        border-radius: var(--radius-md);
+        font-size: 1.8rem;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      dialog[simulator] .sim-close:active { background: rgba(0,191,255,0.12); }
+      dialog[simulator] .sim-frame {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: #000;
+      }
+
+      /* Floating WA */
+      .wa-float {
+        position: fixed;
+        bottom: calc(var(--space-4) + var(--safe-bottom));
+        right: var(--space-4);
+        display: flex;
+        min-width: 3rem;
+        min-height: 3rem;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-3);
+        background: var(--accent);
+        color: #000;
+        text-decoration: none;
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border-radius: var(--radius-full);
+        z-index: 500;
+        box-shadow: 0 6px 24px rgba(0,191,255,0.35);
+        touch-action: manipulation;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .wa-float:active { transform: scale(0.96); box-shadow: 0 4px 16px rgba(0,191,255,0.3); }
+      .wa-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        background: #000;
+        border-radius: 50%;
+        animation: pulse-dot 2s ease-in-out infinite;
+      }
+      @keyframes pulse-dot {
+        0%,100%{transform:scale(1);opacity:1;}
+        50%{transform:scale(1.3);opacity:0.7;}
+      }
+
+      /* Footer */
+      footer {
+        padding: var(--space-5) var(--space-4);
+        padding-bottom: calc(var(--space-5) + var(--safe-bottom));
+        border-top: 1px solid var(--border-subtle);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-2);
+        font-family: var(--font-code);
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+        text-align: center;
+      }
+      .footer-dot {
+        width: 0.2rem;
+        height: 0.2rem;
+        background: var(--accent);
+        border-radius: 50%;
+        box-shadow: 0 0 4px var(--accent);
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(var(--space-3)); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Desktop styles */
+      @media (min-width: 768px) {
+        .navbar { padding: var(--space-4) var(--space-5); }
+        .navbar.scrolled { padding: var(--space-3) var(--space-5); }
+        .navbar .nav-links { display: flex; }
+        .navbar .hamburger { display: none; }
+        .hero { flex-direction: row; min-height: 100vh; }
+        .hero-image-container {
+          flex: 0 0 42%;
+          order: 1;
+          border-left: 1px solid var(--accent-border);
+        }
+        .hero-image-container::before { background: none; }
+        .hero-image-container::after {
+          background:
+            radial-gradient(ellipse 70% 70% at 50% 85%, rgba(0,191,255,0.08) 0%, transparent 65%),
+            radial-gradient(ellipse 50% 40% at 50% 100%, rgba(0,191,255,0.06) 0%, transparent 55%);
+        }
+        .hero-image-container img {
+          object-position: top center;
+          transform: scale(1.08);
+        }
+        .hero-content {
+          flex: 0 0 58%;
+          order: 0;
+          padding: var(--space-9) var(--space-6) var(--space-7) var(--space-5);
+        }
+        .hero h1 { font-size: clamp(2.8rem, 5.5vw, 5.8rem); margin-bottom: var(--space-3); letter-spacing: -2px; }
+        .hero-tagline { font-size: var(--font-size-xl); }
+        .hero-sub { font-size: var(--font-size-lg); }
+        .hero-cta-group { flex-direction: row; margin-top: var(--space-6); }
+        .btn-primary, .btn-outline { width: auto; }
+        section { padding: var(--space-9) var(--space-6); }
+        .section-title { font-size: clamp(2.2rem, 3.8vw, 3.2rem); }
+        .section-desc { font-size: var(--font-size-lg); }
+        .dor-grid { grid-template-columns: repeat(2, 1fr); }
+        .dor-card { padding: var(--space-6) var(--space-5); }
+        .dor-intro { font-size: var(--font-size-xl); }
+        .porque-grid { grid-template-columns: 1fr 1fr; gap: var(--space-7); align-items: center; }
+        .diferenca-table { min-width: unset; }
+        .table-scroll-wrap { overflow-x: visible; background: none; }
+        .table-scroll-hint { display: none; }
+        .etapas-wrapper { grid-template-columns: repeat(2, 1fr); }
+        .planos-grid { grid-template-columns: repeat(2, 1fr); }
+        .cred-wrapper { grid-template-columns: 1fr 2fr; }
+        .cred-left { padding: var(--space-7) var(--space-5); }
+        .cred-right { padding: var(--space-7) var(--space-5); border-top: none; border-left: 2px solid var(--accent-border); }
+        .cta-banner { padding: var(--space-8) var(--space-6); }
+        .cta-btns { flex-direction: row; justify-content: center; }
+        .contact-form { padding: var(--space-6) var(--space-5); }
+        .form-input, .form-textarea { font-size: 0.95rem; min-height: auto; }
+        .form-textarea { font-size: 0.85rem; }
+        .wa-float { bottom: var(--space-5); right: var(--space-5); }
+        footer { flex-direction: row; justify-content: center; padding: var(--space-6) var(--space-7); }
+      }
+      @media (min-width: 1024px) {
+        .navbar { padding: var(--space-5) var(--space-7); }
+        .navbar.scrolled { padding: var(--space-4) var(--space-7); }
+        section { padding: var(--space-10) var(--space-7); }
+        .hero-content { padding: var(--space-11) var(--space-7) var(--space-9) var(--space-6); }
+        .dor-grid { grid-template-columns: repeat(3, 1fr); }
+        .etapas-wrapper { grid-template-columns: repeat(4, 1fr); }
+        .planos-grid { grid-template-columns: repeat(4, 1fr); }
+        .cred-wrapper { max-width: 1100px; }
+        .dor-card { --mouse-x: 50%; --mouse-y: 50%; }
+        .dor-card::before {
+          content: '';
+          position: absolute;
+          top: var(--mouse-y);
+          left: var(--mouse-x);
+          width: 12.5rem;
+          height: 12.5rem;
+          background: radial-gradient(circle, rgba(0,191,255,0.1) 0%, transparent 70%);
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+        .dor-card:hover { background: #141414; }
+        .dor-card:hover::before { opacity: 1; }
+        .plano-card { --mouse-x: 50%; --mouse-y: 50%; }
+        .plano-card::before {
+          content: '';
+          position: absolute;
+          top: var(--mouse-y);
+          left: var(--mouse-x);
+          width: 12.5rem;
+          height: 12.5rem;
+          background: radial-gradient(circle, rgba(0,191,255,0.15) 0%, transparent 70%);
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+        .plano-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,191,255,0.1); border-color: var(--accent-border); }
+        .plano-card:hover::before { opacity: 1; }
+        .etapa:hover { background: #141414; }
+        .etapa:hover::before { opacity: 1; }
+        .btn-primary:hover { box-shadow: 0 0 40px rgba(0,191,255,0.5); transform: translateY(-2px); }
+        .btn-outline:hover { border-color: var(--accent-border); color: var(--accent); background: var(--accent-dim); }
+        .contact-link:hover { border-color: var(--accent-border); background: rgba(0,191,255,0.05); color: var(--accent); }
+        .contact-link:hover .c-arrow { transform: translateX(var(--space-2)); }
+        .c-arrow { transition: transform 0.3s; }
+        dialog[simulator] .sim-panel {
+          width: min(92vw, 1200px);
+          height: min(88vh, 750px);
+          border: 1px solid var(--accent-border);
+        }
+        .wa-float:hover { transform: translateY(-3px); box-shadow: 0 12px 48px rgba(0,191,255,0.5); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation: none !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+        .hero h1, .hero-tagline, .hero-sub, .hero-cta-group, .fade-in {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
     }
 
-    @media (min-width: 1024px) {
-      nav { padding: 20px 60px; }
-      nav.scrolled { padding: 14px 60px; }
-      section { padding: 100px 60px; }
-      .hero-content { padding: 140px 70px 100px 60px; }
-      .dor-grid { grid-template-columns: repeat(3, 1fr); }
-      .etapas-wrapper { grid-template-columns: repeat(4, 1fr); }
-      .planos-grid { grid-template-columns: repeat(4, 1fr); }
-      .cred-wrapper { max-width: 1100px; }
-
-      /* Hover effects só no desktop (sem :hover em touch) */
-      .dor-card { --mouse-x: 50%; --mouse-y: 50%; }
-      .dor-card::before {
-        content: ''; position: absolute;
-        top: var(--mouse-y); left: var(--mouse-x);
-        width: 200px; height: 200px;
-        background: radial-gradient(circle, rgba(0, 191, 255, 0.1) 0%, transparent 70%);
-        transform: translate(-50%, -50%);
-        pointer-events: none; opacity: 0; transition: opacity 0.3s;
+    /* Utilities */
+    @layer utilities {
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
-      .dor-card:hover { background: #141414; }
-      .dor-card:hover::before { opacity: 1; }
-
-      .plano-card { --mouse-x: 50%; --mouse-y: 50%; }
-      .plano-card::before {
-        content: ''; position: absolute;
-        top: var(--mouse-y); left: var(--mouse-x);
-        width: 200px; height: 200px;
-        background: radial-gradient(circle, rgba(0, 191, 255, 0.15) 0%, transparent 70%);
-        transform: translate(-50%, -50%);
-        pointer-events: none; opacity: 0; transition: opacity 0.3s;
+      .sr-only:not(:focus):not(:active) {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
-      .plano-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0, 191, 255, 0.1); border-color: var(--accent-border); }
-      .plano-card:hover::before { opacity: 1; }
-
-      .etapa:hover { background: #141414; }
-      .etapa:hover::before { opacity: 1; }
-
-      .btn-primary:hover { box-shadow: 0 0 40px rgba(0, 191, 255, 0.5); transform: translateY(-2px); }
-      .btn-outline:hover { border-color: var(--accent-border); color: var(--accent); background: var(--accent-dim); }
-
-      .contact-link { transition: all 0.3s var(--ease-smooth); }
-      .contact-link:hover { border-color: var(--accent-border); background: rgba(0, 191, 255, 0.05); color: var(--accent); }
-      .contact-link:hover .c-arrow { transform: translateX(4px); }
-      .c-arrow { transition: transform 0.3s; }
-
-      .sim-modal-panel { width: min(96vw, 1320px); height: min(92vh, 860px); border: 1px solid var(--accent-border); }
-      .wa-float:hover { transform: translateY(-4px); box-shadow: 0 12px 48px rgba(0, 191, 255, 0.5); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-      .hero h1, .hero-tagline, .hero-sub, .hero-cta-group, .fade-in { opacity: 1 !important; transform: none !important; }
+      .text-center { text-align: center; }
+      .text-left { text-align: left; }
+      .text-right { text-align: right; }
+      .flex { display: flex; }
+      .flex-col { flex-direction: column; }
+      .items-center { align-items: center; }
+      .justify-center { justify-content: center; }
+      .justify-between { justify-content: space-between; }
+      .gap-1 { gap: var(--space-1); }
+      .gap-2 { gap: var(--space-2); }
+      .gap-3 { gap: var(--space-3); }
+      .gap-4 { gap: var(--space-4); }
+      .gap-5 { gap: var(--space-5); }
+      .gap-6 { gap: var(--space-6); }
+      .gap-8 { gap: var(--space-8); }
+      .w-full { width: 100%; }
+      .max-w-screen-xl { max-width: 1440px; }
+      .mx-auto { margin-inline: auto; }
+      .px-4 { padding-inline: var(--space-4); }
+      .py-6 { padding-block: var(--space-6); }
+      .mt-4 { margin-top: var(--space-4); }
+      .mb-4 { margin-bottom: var(--space-4); }
+      .mt-6 { margin-top: var(--space-6); }
+      .mb-6 { margin-bottom: var(--space-6); }
+      .mt-8 { margin-top: var(--space-8); }
+      .mb-8 { margin-bottom: var(--space-8); }
     }
   </style>
 </head>
 <body>
+  <!-- Skip to content -->
+  <a href="#main-content" class="visually-hidden focus-visible:not(.visually-hidden)">Skip to main content</a>
 
-  <!-- ═══ NAV ═══ -->
-  <nav id="navbar">
+  <!-- Nav -->
+  <nav class="navbar" id="navbar">
     <div class="logo">Custódior<span style="color:var(--accent);">.</span></div>
     <div class="nav-links">
-      <a href="#dor"         class="nav-link" data-section="dor">Você se identifica?</a>
-      <a href="#servicos"    class="nav-link" data-section="servicos">Serviços</a>
+      <a href="#dor" class="nav-link" data-section="dor">Você se identifica?</a>
+      <a href="#servicos" class="nav-link" data-section="servicos">Serviços</a>
       <a href="#credenciais" class="nav-link" data-section="credenciais">Credenciais</a>
-      <a href="#contato"     class="nav-link" data-section="contato">Falar agora</a>
+      <a href="#contato" class="nav-link" data-section="contato">Falar agora</a>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="navbar-end">
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema claro/escuro">
+        <span class="theme-icon">🌙</span>
+      </div>
+    </div>
   </nav>
 
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-    <a href="#dor"         class="mnav">Você se identifica?</a>
-    <a href="#servicos"    class="mnav">Serviços</a>
+    <a href="#dor" class="mnav">Você se identifica?</a>
+    <a href="#servicos" class="mnav">Serviços</a>
     <a href="#credenciais" class="mnav">Credenciais</a>
-    <a href="#contato"     class="mnav">Falar agora</a>
+    <a href="#contato" class="mnav">Falar agora</a>
   </div>
 
-  <!-- ═══ HERO ═══ -->
-  <section class="hero" id="top">
-    <!-- mobile: imagem no topo via order / desktop: lado direito -->
-    <div class="hero-image-container" id="heroImgWrap">
-      <img src="perfil1.png" alt="Rafael Custódio — CFO Externo e Gestão Financeira" id="heroPortrait" loading="eager" fetchpriority="high" decoding="async">
-    </div>
-    <div class="hero-content">
-      <div class="terminal-badge">CFO externo · FEIRA DE SANTANA, BA · DISPONÍVEL</div>
-      <h1>Rafael<br>Custódio<span class="accent">.</span></h1>
-      <p class="hero-tagline">
-        Administrador e analista financeiro. Trabalho com donos de empresa que faturam bem — e não entendem por que o dinheiro some todo mês.
-      </p>
-      <p class="hero-sub"><span id="typing-text"></span><span class="cursor-char"></span></p>
-      <div class="hero-cta-group">
-        <a href="#dor" class="btn-primary">Ver se isso é pra você →</a>
-        <a href="#contato" class="btn-outline">Falar agora</a>
+  <!-- Main content -->
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="hero-image-container" id="heroImgWrap">
+        <img src="perfil1.png" alt="Rafael Custódio — CFO Externo e Gestão Financeira" id="heroPortrait" loading="lazy" decoding="async" width="800" height="600">
       </div>
-    </div>
-  </section>
-
-  <!-- ═══ DOR — IDENTIFICAÇÃO ═══ -->
-  <section id="dor">
-    <p class="section-eyebrow fade-in">/ Você se identifica com alguma dessas situações?</p>
-    <h2 class="section-title fade-in">Seu negócio fatura.<br><span class="muted">Mas o caixa não reflete isso.</span></h2>
-    <p class="dor-intro fade-in">
-      A maioria dos donos de empresa que eu atendo <strong>faz tudo certo no operacional</strong> — atende bem, vende, cresce. O problema está em outro lugar: ninguém nunca organizou o financeiro de verdade.
-    </p>
-    <div class="dor-grid fade-in">
-      <div class="dor-card">
-        <div class="dor-card-num">01 · O CAIXA</div>
-        <h3>Fatura bem, mas sempre aperta no fim do mês</h3>
-        <p>Você olha o faturamento e parece que deveria sobrar dinheiro. Mas na hora de pagar fornecedor ou folha, o saldo some. E você não sabe exatamente onde foi.</p>
-      </div>
-      <div class="dor-card">
-        <div class="dor-card-num">02 · A EXPANSÃO</div>
-        <h3>Quer crescer, mas não sabe se tem fôlego pra isso</h3>
-        <p>Segunda unidade, novo produto, contratação de equipe — a vontade existe. O que falta é a segurança de saber se os números aguentam. Então você adia.</p>
-      </div>
-      <div class="dor-card">
-        <div class="dor-card-num">03 · O CONTADOR</div>
-        <h3>Tem contador, mas ele não te ajuda a decidir nada</h3>
-        <p>Ele entrega a guia no prazo. Mas quando você pergunta qual produto dá mais margem, ou se vale abrir uma filial — o silêncio é a resposta.</p>
-      </div>
-      <div class="dor-card">
-        <div class="dor-card-num">04 · OS NÚMEROS</div>
-        <h3>Toma decisão no feeling porque não tem dado</h3>
-        <p>Contratação, desconto, precificação — tudo vai "no instinto" porque não existe um lugar onde você olhe e saiba de verdade como a empresa está.</p>
-      </div>
-      <div class="dor-card">
-        <div class="dor-card-num">05 · O BANCO</div>
-        <h3>Precisa apresentar a empresa mas não tem relatórios</h3>
-        <p>Banco pediu DRE. Sócio novo quer ver números. Investidor perguntou a margem. E você não tem nada formatado, ou o que tem não conta a história certa.</p>
-      </div>
-      <div class="dor-card">
-        <div class="dor-card-num">06 · A MISTURA</div>
-        <h3>PF e PJ misturados — você nunca sabe o que é lucro de verdade</h3>
-        <p>Paga conta pessoal pelo CNPJ, tira dinheiro "quando precisa", não tem pró-labore definido. O resultado: você nunca sabe quanto a empresa realmente ganha.</p>
-      </div>
-    </div>
-    <div class="dor-callout fade-in">
-      <p>Se você se identificou com pelo menos um desses cenários — não é azar, não é falta de talento. É ausência de estrutura financeira. E isso tem solução.</p>
-    </div>
-  </section>
-
-  <!-- ═══ POR QUE — EDUCAÇÃO ═══ -->
-  <section id="porque">
-    <div class="porque-grid">
-      <div class="porque-left fade-in">
-        <p class="section-eyebrow">/ A diferença que faz sentido</p>
-        <h2>Contador cuida do <span class="accent">fisco.</span><br>Eu cuido da sua <span class="accent">decisão.</span></h2>
-        <p>O contador é indispensável — ele garante que sua empresa está em dia com a Receita Federal. Mas ele olha para o passado e para o governo, não para o futuro e para você.</p>
-        <p>O que eu faço é diferente: organizo os números de um jeito que você consiga responder três perguntas que todo dono precisa saber:</p>
-        <p style="font-family:var(--font-code);font-size:0.85rem;color:var(--accent);line-height:2.2;margin-top:12px;">
-          → Quanto estou ganhando de verdade?<br>
-          → Onde estou perdendo dinheiro?<br>
-          → O que vai acontecer se eu tomar essa decisão?
+      <div class="hero-content">
+        <div class="terminal-badge">CFO externo · FEIRA DE SANTANA, BA · DISPONÍVEL</div>
+        <h1>Rafael<br>Custódio<span class="accent">.</span></h1>
+        <p class="hero-tagline">
+          Administrador e analista financeiro. Trabalho com donos de empresa que faturam bem — e não entendem por que o dinheiro some todo mês.
         </p>
-      </div>
-      <div class="fade-in">
-        <p class="table-scroll-hint">← deslize para ver →</p>
-        <div class="table-scroll-wrap">
-          <table class="diferenca-table">
-            <thead>
-              <tr>
-                <th>O que você precisa saber</th>
-                <th>Com gestão financeira estruturada</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Qual produto dá mais margem?</td><td><span class="check">✓</span>Você sabe exatamente, por produto e por período</td></tr>
-              <tr><td>Por que o caixa apertou?</td><td><span class="check">✓</span>Mapeado: inadimplência, custo fora do lugar ou sazonalidade</td></tr>
-              <tr><td>Posso contratar mais dois?</td><td><span class="check">✓</span>Simulado com impacto no fluxo dos próximos 6 meses</td></tr>
-              <tr><td>Vale abrir segunda unidade?</td><td><span class="check">✓</span>Ponto de equilíbrio calculado, cenários projetados</td></tr>
-              <tr><td>Quanto eu realmente lucro?</td><td><span class="check">✓</span>DRE gerencial com pró-labore, PF separada do CNPJ</td></tr>
-            </tbody>
-          </table>
+        <p class="hero-sub"><span id="typing-text"></span><span class="cursor-char"></span></p>
+        <div class="hero-cta-group">
+          <a href="#dor" class="btn-primary">Ver se isso é pra você →</a>
+          <a href="#contato" class="btn-outline">Falar agora</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══ COMO FUNCIONA ═══ -->
-  <section id="comofunciona">
-    <p class="section-eyebrow fade-in">/ Do caos ao controle</p>
-    <h2 class="section-title fade-in">Como <span class="muted">funciona</span></h2>
-    <p class="section-desc fade-in">Não chego com dashboard pronto. Começo entendendo a realidade do seu negócio — e construo o que faz mais sentido para o que você precisa decidir agora.</p>
-
-    <div class="etapas-wrapper fade-in">
-      <div class="etapa">
-        <div class="etapa-num">01 · Diagnóstico</div>
-        <h3>Entender o negócio</h3>
-        <p>Mapeio como os números chegam hoje — planilhas dispersas, dados do contador atrasados, o que existe e o que está faltando.</p>
-      </div>
-      <div class="etapa">
-        <div class="etapa-num">02 · Estrutura</div>
-        <h3>Organizar os dados</h3>
-        <p>DRE gerencial, centros de custo, separação PF/PJ. Base financeira sólida antes de qualquer relatório ou dashboard.</p>
-      </div>
-      <div class="etapa">
-        <div class="etapa-num">03 · Painel</div>
-        <h3>Visualizar o que importa</h3>
-        <p>Dashboard com faturamento vs meta, margem por produto, fluxo de caixa projetado — o que o dono precisa ver toda semana.</p>
-      </div>
-      <div class="etapa">
-        <div class="etapa-num">04 · Acompanhamento</div>
-        <h3>Decidir com segurança</h3>
-        <p>Fecho o mês com você, explico as variações, atualizo o forecast e preparo um briefing de uma página.</p>
-      </div>
-    </div>
-
-    <div style="margin-top: 28px;" class="fade-in">
-      <div class="sim-inline-card" onclick="openSimulator()">
-        <div class="sim-label">CASE · FERRAMENTA REAL</div>
-        <h3>Simulador de Precificação</h3>
-        <p>Ferramenta que desenvolvi para simular cenários de preço, margem e demanda em tempo real. Útil antes de qualquer reajuste de preço.</p>
-        <button class="btn-outline" type="button" style="width:100%;justify-content:center;">Testar simulador →</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ SERVIÇOS & PLANOS ═══ -->
-  <section id="servicos">
-    <p class="section-eyebrow fade-in">/ Escolha o que faz sentido agora</p>
-    <h2 class="section-title fade-in">Serviços <span class="muted">&amp; Investimento</span></h2>
-    <p class="section-desc fade-in">Começa onde faz mais sentido para o seu momento. A maioria dos clientes inicia pelo Diagnóstico — e percebe o que estava escondido nos próprios números.</p>
-
-    <div class="planos-grid fade-in">
-      <div class="plano-card">
-        <div class="plano-tipo">Projeto único · Entrada</div>
-        <div class="plano-nome">Diagnóstico Financeiro</div>
-        <div class="plano-preco">
-          <span class="valor">R$ 900</span>
-          <span class="periodo">– R$ 1.500</span>
+    <!-- Dor -->
+    <section id="dor">
+      <p class="section-eyebrow fade-in">/ Você se identifica com alguma dessas situações?</p>
+      <h2 class="section-title fade-in">Seu negócio fatura.<br><span class="muted">Mas o caixa não reflete isso.</span></h2>
+      <p class="dor-intro fade-in">
+        A maioria dos donos de empresa que eu atendo <strong>faz tudo certo no operacional</strong> — atende bem, vende, cresce. O problema está em outro lugar: ninguém nunca organizou o financeiro de verdade.
+      </p>
+      <div class="dor-grid fade-in">
+        <div class="dor-card">
+          <div class="dor-card-num">01 · O CAIXA</div>
+          <h3>Fatura bem, mas sempre aperta no fim do mês</h3>
+          <p>Você olha o faturamento e parece que deveria sobrar dinheiro. Mas na hora de pagar fornecedor ou folha, o saldo some. E você não sabe exatamente onde foi.</p>
         </div>
-        <p class="plano-desc">O primeiro passo. Mapeio o que existe, o que está funcionando e o que está escondendo um problema — e entrego um relatório com as prioridades.</p>
-        <ul class="plano-itens">
-          <li>Levantamento de planilhas e dados existentes</li>
-          <li>Identificação de gaps no controle financeiro</li>
-          <li>Relatório de diagnóstico com prioridades</li>
-          <li>1–2 semanas de duração</li>
-        </ul>
-        <a href="#contato" class="plano-cta outline">Começar por aqui</a>
-      </div>
-
-      <div class="plano-card">
-        <div class="plano-tipo">Projeto</div>
-        <div class="plano-nome">Estrutura de Controle</div>
-        <div class="plano-preco">
-          <span class="valor">R$ 2.000</span>
-          <span class="periodo">– R$ 5.000</span>
+        <div class="dor-card">
+          <div class="dor-card-num">02 · A EXPANSÃO</div>
+          <h3>Quer crescer, mas não sabe se tem fôlego pra isso</h3>
+          <p>Segunda unidade, novo produto, contratação de equipe — a vontade existe. O que falta é a segurança de saber se os números aguentam. Então você adia.</p>
         </div>
-        <p class="plano-desc">Construo a base financeira da sua empresa do zero: DRE gerencial, centros de custo e separação clara entre PF e PJ.</p>
-        <ul class="plano-itens">
-          <li>DRE gerencial estruturado</li>
-          <li>Centros de custo por área ou produto</li>
-          <li>Separação definitiva PF / PJ</li>
-          <li>Modelo auditável em Excel ou SQL</li>
-        </ul>
-        <a href="#contato" class="plano-cta outline">Solicitar proposta</a>
-      </div>
-
-      <div class="plano-card">
-        <div class="plano-tipo">Projeto ou recorrente</div>
-        <div class="plano-nome">Painel de Controle</div>
-        <div class="plano-preco">
-          <span class="valor">R$ 1.500</span>
-          <span class="periodo">– R$ 3.500</span>
+        <div class="dor-card">
+          <div class="dor-card-num">03 · O CONTADOR</div>
+          <h3>Tem contador, mas ele não te ajuda a decidir nada</h3>
+          <p>Ele entrega a guia no prazo. Mas quando você pergunta qual produto dá mais margem, ou se vale abrir uma filial — o silêncio é a resposta.</p>
         </div>
-        <p class="plano-desc">Dashboard executivo com as métricas que você precisa ver toda semana — sem planilha escondida, sem dado desatualizado.</p>
-        <ul class="plano-itens">
-          <li>Faturamento vs meta em tempo real</li>
-          <li>Margem por produto ou serviço</li>
-          <li>Fluxo de caixa projetado</li>
-          <li>Inadimplência e alertas automáticos</li>
-        </ul>
-        <a href="#contato" class="plano-cta outline">Solicitar proposta</a>
-      </div>
-
-      <div class="plano-card destaque">
-        <div class="plano-tipo">Recorrente mensal</div>
-        <div class="plano-nome">CFO Externo</div>
-        <div class="plano-preco">
-          <span class="valor">R$ 1.200</span>
-          <span class="periodo">– R$ 2.500/mês</span>
+        <div class="dor-card">
+          <div class="dor-card-num">04 · OS NÚMEROS</div>
+          <h3>Toma decisão no feeling porque não tem dado</h3>
+          <p>Contratação, desconto, precificação — tudo vai "no instinto" porque não existe um lugar onde você olhe e saiba de verdade como a empresa está.</p>
         </div>
-        <p class="plano-desc">Atuo como seu sócio financeiro: fecho o mês, explico o que aconteceu, atualizo a projeção e entrego um briefing de uma página.</p>
-        <ul class="plano-itens">
-          <li>Fechamento mensal com o contador</li>
-          <li>Análise de variações e causas</li>
-          <li>Atualização do forecast mensal</li>
-          <li>Briefing executivo de 1 página</li>
-          <li>Disponível para dúvidas ao longo do mês</li>
-        </ul>
-        <a href="#contato" class="plano-cta primary">Quero esse →</a>
-      </div>
-    </div>
-
-    <p class="planos-obs fade-in">
-      Não tem certeza por onde começar? <strong style="color:var(--text-main);">Me manda mensagem.</strong>
-      Em 20 minutos de conversa eu te digo qual faz mais sentido — sem compromisso.
-    </p>
-  </section>
-
-  <!-- ═══ CREDENCIAIS ═══ -->
-  <section id="credenciais">
-    <p class="section-eyebrow fade-in">/ Base acadêmica &amp; técnica</p>
-    <h2 class="section-title fade-in">Por que <span class="muted">confiar nos números</span></h2>
-    <p class="section-desc fade-in">A combinação de Administração com domínio técnico me dá algo raro: entendo o negócio como gestor e consigo automatizar e visualizar os dados como analista.</p>
-
-    <div class="cred-wrapper fade-in">
-      <div class="cred-left">
-        <div>
-          <div style="font-family:var(--font-code);font-size:0.62rem;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Graduação</div>
-          <div style="font-family:var(--font-code);font-size:0.72rem;color:var(--accent);text-transform:uppercase;letter-spacing:1px;">Formando · 2026</div>
-          <h3 class="cred-degree">Administração</h3>
-          <p class="cred-inst">UNIFACS — SANTA MÔNICA</p>
+        <div class="dor-card">
+          <div class="dor-card-num">05 · O BANCO</div>
+          <h3>Precisa apresentar a empresa mas não tem relatórios</h3>
+          <p>Banco pediu DRE. Sócio novo quer ver números. Investidor perguntou a margem. E você não tem nada formatado, ou o que tem não conta a história certa.</p>
         </div>
-        <div class="cred-tags">
-          <span class="cred-tag">FP&amp;A</span>
-          <span class="cred-tag">FINANÇAS</span>
-          <span class="cred-tag">ESTRATÉGIA</span>
+        <div class="dor-card">
+          <div class="dor-card-num">06 · A MISTURA</div>
+          <h3>PF e PJ misturados — você nunca sabe o que é lucro de verdade</h3>
+          <p>Paga conta pessoal pelo CNPJ, tira dinheiro "quando precisa", não tem pró-labore definido. O resultado: você nunca sabe quanto a empresa realmente ganha.</p>
         </div>
       </div>
-      <div class="cred-right">
-        <p class="cred-skills-title">Stack Técnico</p>
-        <div class="skill-row">
-          <div class="skill-bar-wrap">
-            <div class="skill-name">FP&amp;A · Budget · Forecast</div>
-            <div class="skill-track"><div class="skill-fill" style="--w:88%"></div></div>
-          </div><span class="skill-badge">Principal</span>
-        </div>
-        <div class="skill-row">
-          <div class="skill-bar-wrap">
-            <div class="skill-name">Power BI · DAX · Dashboards</div>
-            <div class="skill-track"><div class="skill-fill" style="--w:86%"></div></div>
-          </div><span class="skill-badge">Aplicado</span>
-        </div>
-        <div class="skill-row">
-          <div class="skill-bar-wrap">
-            <div class="skill-name">Excel · Modelagem avançada</div>
-            <div class="skill-track"><div class="skill-fill" style="--w:86%"></div></div>
-          </div><span class="skill-badge">Aplicado</span>
-        </div>
-        <div class="skill-row">
-          <div class="skill-bar-wrap">
-            <div class="skill-name">SQL · Python · Automação</div>
-            <div class="skill-track"><div class="skill-fill" style="--w:80%"></div></div>
-          </div><span class="skill-badge">Aplicado</span>
-        </div>
-        <div class="skill-row">
-          <div class="skill-bar-wrap">
-            <div class="skill-name">Pricing · Margem · Unit Economics</div>
-            <div class="skill-track"><div class="skill-fill" style="--w:80%"></div></div>
-          </div><span class="skill-badge">Aplicado</span>
-        </div>
+      <div class="dor-callout fade-in">
+        <p>Se você se identificou com pelo menos um desses cenários — não é azar, não é falta de talento. É ausência de estrutura financeira. E isso tem solução.</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══ CONTATO & CTA ═══ -->
-  <section id="contato">
-    <div class="contact-wrapper">
-      <div class="cta-banner fade-in">
-        <h2>Você não precisa entender FP&amp;A.<br><span style="color:var(--accent);">Você precisa entender seus números.</span></h2>
-        <p>Começa com uma conversa de 20 minutos. Sem compromisso. Te digo exatamente o que faz sentido pro seu momento.</p>
-        <div class="cta-btns">
-          <a href="https://wa.me/5575983144766?text=Olá,%20Rafael!%2C%20Vi%20seu%20site%20e%20quero%20conversar%20sobre%20gestão%20financeira%20da%20minha%20empresa." target="_blank" rel="noopener" class="btn-primary">Falar no WhatsApp →</a>
-          <a href="#form" class="btn-outline">Ou me manda uma mensagem</a>
+    <!-- Porque -->
+    <section id="porque">
+      <div class="porque-grid">
+        <div class="porque-left fade-in">
+          <p class="section-eyebrow">/ A diferença que faz sentido</p>
+          <h2>Contador cuida do <span class="accent">fisco.</span><br>Eu cuido da sua <span class="accent">decisão.</span></h2>
+          <p>O contador é indispensável — ele garante que sua empresa está em dia com a Receita Federal. Mas ele olha para o passado e para o governo, não para o futuro e para você.</p>
+          <p>O que eu faço é diferente: organizo os números de um jeito que você consiga responder três perguntas que todo dono precisa saber:</p>
+          <p style="font-family:var(--font-code);font-size:var(--font-size-sm);color:var(--accent);line-height:2.2;margin-top:var(--space-2);">
+            → Quanto estou ganhando de verdade?<br>
+            → Onde estou perdendo dinheiro?<br>
+            → O que vai acontecer se eu tomar essa decisão?
+          </p>
         </div>
-      </div>
-
-      <div class="contact-form fade-in" id="form">
-        <form id="leadForm">
-          <div class="form-row">
-            <label class="form-label" for="fName">Seu Nome</label>
-            <input type="text" id="fName" class="form-input" placeholder="Seu nome" autocomplete="name">
+        <div class="fade-in">
+          <p class="table-scroll-hint">← deslize para ver →</p>
+          <div class="table-scroll-wrap">
+            <table class="diferenca-table">
+              <thead>
+                <tr>
+                  <th>O que você precisa saber</th>
+                  <th>Com gestão financeira estruturada</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Qual produto dá mais margem?</td><td><span class="check">✓</span>Você sabe exatamente, por produto e por período</td></tr>
+                <tr><td>Por que o caixa apertou?</td><td><span class="check">✓</span>Mapeado: inadimplência, custo fora do lugar ou sazonalidade</td></tr>
+                <tr><td>Posso contratar mais dois?</td><td><span class="check">✓</span>Simulado com impacto no fluxo dos próximos 6 meses</td></tr>
+                <tr><td>Vale abrir segunda unidade?</td><td><span class="check">✓</span>Ponto de equilíbrio calculado, cenários projetados</td></tr>
+                <tr><td>Quanto eu realmente lucro?</td><td><span class="check">✓</span>DRE gerencial com pró-labore, PF separada do CNPJ</td></tr>
+              </tbody>
+            </table>
           </div>
-          <div class="form-row">
-            <label class="form-label" for="fCompany">Empresa</label>
-            <input type="text" id="fCompany" class="form-input" placeholder="Nome da empresa ou setor" autocomplete="organization">
-          </div>
-          <div class="form-row">
-            <label class="form-label" for="fContact">WhatsApp ou E-mail</label>
-            <input type="text" id="fContact" class="form-input" placeholder="+55 75 99999-9999" autocomplete="tel">
-          </div>
-          <div class="form-row">
-            <label class="form-label" for="fTopic">Qual é o seu momento agora?</label>
-            <select id="fTopic" class="form-input" style="cursor:pointer;">
-              <option value="">Selecione uma situação</option>
-              <option value="Caixa apertado mesmo faturando bem">Caixa aperta mesmo faturando bem</option>
-              <option value="Quero expandir mas não sei se tenho fôlego">Quero expandir mas não sei se tenho fôlego</option>
-              <option value="Não tenho ideia da minha margem real">Não sei qual produto me dá mais margem</option>
-              <option value="Preciso apresentar números para banco ou sócio">Preciso apresentar números para banco ou sócio</option>
-              <option value="Diagnóstico Financeiro">Quero começar pelo Diagnóstico</option>
-              <option value="CFO Externo / Acompanhamento Mensal">Quero o acompanhamento mensal (CFO Externo)</option>
-              <option value="Outro">Outro</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <label class="form-label" for="fMsg">Me conta mais</label>
-            <textarea id="fMsg" class="form-textarea" placeholder="Qual é a principal dor agora? Quanto você fatura por mês (aproximado)?"></textarea>
-          </div>
-          <button type="submit" id="leadSubmit" class="form-submit">Enviar — respondo no mesmo dia</button>
-          <div id="formStatus" class="form-status"></div>
-        </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Como funciona -->
+    <section id="comofunciona">
+      <p class="section-eyebrow fade-in">/ Do caos ao controle</p>
+      <h2 class="section-title fade-in">Como <span class="muted">funciona</span></h2>
+      <p class="section-desc fade-in">Não chego com dashboard pronto. Começo entendendo a realidade do seu negócio — e construo o que faz mais sentido para o que você precisa decidir agora.</p>
+
+      <div class="etapas-wrapper fade-in">
+        <div class="etapa">
+          <div class="etapa-num">01 · Diagnóstico</div>
+          <h3>Entender o negócio</h3>
+          <p>Mapeio como os números chegam hoje — planilhas dispersas, dados do contador atrasados, o que existe e o que está faltando.</p>
+        </div>
+        <div class="etapa">
+          <div class="etapa-num">02 · Estrutura</div>
+          <h3>Organizar os dados</h3>
+          <p>DRE gerencial, centros de custo, separação PF/PJ. Base financeira sólida antes de qualquer relatório ou dashboard.</p>
+        </div>
+        <div class="etapa">
+          <div class="etapa-num">03 · Painel</div>
+          <h3>Visualizar o que importa</h3>
+          <p>Dashboard com faturamento vs meta, margem por produto, fluxo de caixa projetado — o que o dono precisa ver toda semana.</p>
+        </div>
+        <div class="etapa">
+          <div class="etapa-num">04 · Acompanhamento</div>
+          <h3>Decidir com segurança</h3>
+          <p>Fecho o mês com você, explico as variações, atualizo o forecast e preparo um briefing de uma página.</p>
+        </div>
       </div>
 
-      <div class="contact-links fade-in">
-        <a href="https://www.linkedin.com/in/custodior/" target="_blank" rel="noopener" class="contact-link">
-          <div class="c-icon">in</div>
-          <div class="c-content">
-            <span class="c-label">LinkedIn</span>
-            <span class="c-value">linkedin.com/in/custodior</span>
-          </div>
-          <div class="c-arrow">→</div>
-        </a>
-        <a href="https://wa.me/5575983144766" target="_blank" rel="noopener" class="contact-link" id="waQuick">
-          <div class="c-icon"><img src="wpp.png" alt="WhatsApp" class="img-whatsapp"></div>
-          <div class="c-content">
-            <span class="c-label">WhatsApp · Resposta rápida</span>
-            <span class="c-value">+55 (75) 98314-4766</span>
-          </div>
-          <div class="c-arrow">→</div>
-        </a>
+      <div style="margin-top: var(--space-5);" class="fade-in">
+        <div class="sim-inline-card" onclick="openSimulator()">
+          <div class="sim-label">CASE · FERRAMENTA REAL</div>
+          <h3>Simulador de Precificação</h3>
+          <p>Ferramenta que desenvolvi para simular cenários de preço, margem e demanda em tempo real. Útil antes de qualquer reajuste de preço.</p>
+          <button class="btn-outline" type="button" style="width:100%;justify-content:center;">Testar simulador →</button>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos">
+      <p class="section-eyebrow fade-in">/ Escolha o que faz sentido agora</p>
+      <h2 class="section-title fade-in">Serviços <span class="muted">&amp; Investimento</span></h2>
+      <p class="section-desc fade-in">Começa onde faz mais sentido para o seu momento. A maioria dos clientes inicia pelo Diagnóstico — e percebe o que estava escondido nos próprios números.</p>
+
+      <div class="planos-grid fade-in">
+        <div class="plano-card">
+          <div class="plano-tipo">Projeto único · Entrada</div>
+          <div class="plano-nome">Diagnóstico Financeiro</div>
+          <div class="plano-preco">
+            <span class="valor">R$ 900</span>
+            <span class="periodo">– R$ 1.500</span>
+          </div>
+          <p class="plano-desc">O primeiro passo. Mapeio o que existe, o que está funcionando e o que está escondendo um problema — e entrego um relatório com as prioridades.</p>
+          <ul class="plano-itens">
+            <li>Levantamento de planilhas e dados existentes</li>
+            <li>Identificação de gaps no controle financeiro</li>
+            <li>Relatório de diagnóstico com prioridades</li>
+            <li>1–2 semanas de duração</li>
+          </ul>
+          <a href="#contato" class="plano-cta outline">Começar por aqui</a>
+        </div>
+
+        <div class="plano-card">
+          <div class="plano-tipo">Projeto</div>
+          <div class="plano-nome">Estrutura de Controle</div>
+          <div class="plano-preco">
+            <span class="valor">R$ 2.000</span>
+            <span class="periodo">– R$ 5.000</span>
+          </div>
+          <p class="plano-desc">Construo a base financeira da sua empresa do zero: DRE gerencial, centros de custo e separação clara entre PF e PJ.</p>
+          <ul class="plano-itens">
+            <li>DRE gerencial estruturado</li>
+            <li>Centros de custo por área ou produto</li>
+            <li>Separação definitiva PF / PJ</li>
+            <li>Modelo auditável em Excel ou SQL</li>
+          </ul>
+          <a href="#contato" class="plano-cta outline">Solicitar proposta</a>
+        </div>
+
+        <div class="plano-card">
+          <div class="plano-tipo">Projeto ou recorrente</div>
+          <div class="plano-nome">Painel de Controle</div>
+          <div class="plano-preco">
+            <span class="valor">R$ 1.500</span>
+            <span class="periodo">– R$ 3.500</span>
+          </div>
+          <p class="plano-desc">Dashboard executivo com as métricas que você precisa ver toda semana — sem planilha escondida, sem dado desatualizado.</p>
+          <ul class="plano-itens">
+            <li>Faturamento vs meta em tempo real</li>
+            <li>Margem por produto ou serviço</li>
+            <li>Fluxo de caixa projetado</li>
+            <li>Inadimplência e alertas automáticos</li>
+          </ul>
+          <a href="#contato" class="plano-cta outline">Solicitar proposta</a>
+        </div>
+
+        <div class="plano-card destaque">
+          <div class="plano-tipo">Recorrente mensal</div>
+          <div class="plano-nome">CFO Externo</div>
+          <div class="plano-preco">
+            <span class="valor">R$ 1.200</span>
+            <span class="periodo">– R$ 2.500/mês</span>
+          </div>
+          <p class="plano-desc">Atuo como seu sócio financeiro: fecho o mês, explico o que aconteceu, atualizo a projeção e entrego um briefing de uma página.</p>
+          <ul class="plano-itens">
+            <li>Fechamento mensal com o contador</li>
+            <li>Análise de variações e causas</li>
+            <li>Atualização do forecast mensal</li>
+            <li>Briefing executivo de 1 página</li>
+            <li>Disponível para dúvidas ao longo do mês</li>
+          </ul>
+          <a href="#contato" class="plano-cta primary">Quero esse →</a>
+        </div>
+      </div>
+
+      <p class="planos-obs fade-in">
+        Não tem certeza por onde começar? <strong style="color:var(--text-main);">Me manda mensagem.</strong>
+        Em 20 minutos de conversa eu te digo qual faz mais sentido — sem compromisso.
+      </p>
+    </section>
+
+    <!-- Credenciais -->
+    <section id="credenciais">
+      <p class="section-eyebrow fade-in">/ Base acadêmica &amp; técnica</p>
+      <h2 class="section-title fade-in">Por que <span class="muted">confiar nos números</span></h2>
+      <p class="section-desc fade-in">A combinação de Administração com domínio técnico me dá algo raro: entendo o negócio como gestor e consigo automatizar e visualizar os dados como analista.</p>
+
+      <div class="cred-wrapper fade-in">
+        <div class="cred-left">
+          <div>
+            <div class="label">Graduação</div>
+            <div class="value">Formando · 2026</div>
+            <h3 class="cred-degree">Administração</h3>
+            <p class="cred-inst">UNIFACS — SANTA MÔNICA</p>
+          </div>
+          <div class="cred-tags">
+            <span class="cred-tag">FP&amp;A</span>
+            <span class="cred-tag">FINANÇAS</span>
+            <span class="cred-tag">ESTRATÉGIA</span>
+          </div>
+        </div>
+        <div class="cred-right">
+          <p class="cred-skills-title">Stack Técnico</p>
+          <div class="skill-row">
+            <div class="skill-bar-wrap">
+              <div class="skill-name">FP&amp;A · Budget · Forecast</div>
+              <div class="skill-track"><div class="skill-fill" style="--w:88%"></div></div>
+            </div><span class="skill-badge">Principal</span>
+          </div>
+          <div class="skill-row">
+            <div class="skill-bar-wrap">
+              <div class="skill-name">Power BI · DAX · Dashboards</div>
+              <div class="skill-track"><div class="skill-fill" style="--w:86%"></div></div>
+            </div><span class="skill-badge">Aplicado</span>
+          </div>
+          <div class="skill-row">
+            <div class="skill-bar-wrap">
+              <div class="skill-name">Excel · Modelagem avançada</div>
+              <div class="skill-track"><div class="skill-fill" style="--w:86%"></div></div>
+            </div><span class="skill-badge">Aplicado</span>
+          </div>
+          <div class="skill-row">
+            <div class="skill-bar-wrap">
+              <div class="skill-name">SQL · Python · Automação</div>
+              <div class="skill-track"><div class="skill-fill" style="--w:80%"></div></div>
+            </div><span class="skill-badge">Aplicado</span>
+          </div>
+          <div class="skill-row">
+            <div class="skill-bar-wrap">
+              <div class="skill-name">Pricing · Margem · Unit Economics</div>
+              <div class="skill-track"><div class="skill-fill" style="--w:80%"></div></div>
+            </div><span class="skill-badge">Aplicado</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato">
+      <div class="contact-wrapper">
+        <div class="cta-banner fade-in">
+          <h2>Você não precisa entender FP&amp;A.<br><span style="color:var(--accent);">Você precisa entender seus números.</span></h2>
+          <p>Começa com uma conversa de 20 minutos. Sem compromisso. Te digo exatamente o que faz sentido pro seu momento.</p>
+          <div class="cta-btns">
+            <a href="https://wa.me/5575983144766?text=Olá,%20Rafael!%2C%20Vi%20seu%20site%20e%20quero%20conversar%20sobre%20gestão%20financeira%20da%20minha%20empresa." target="_blank" rel="noopener" class="btn-primary">Falar no WhatsApp →</a>
+            <a href="#form" class="btn-outline">Ou me manda uma mensagem</a>
+          </div>
+        </div>
+
+        <div class="contact-form fade-in" id="form">
+          <form id="leadForm">
+            <div class="form-row">
+              <label class="label" for="fName">Seu Nome</label>
+              <input type="text" id="fName" class="input" placeholder="Seu nome" autocomplete="name">
+            </div>
+            <div class="form-row">
+              <label class="label" for="fCompany">Empresa</label>
+              <input type="text" id="fCompany" class="input" placeholder="Nome da empresa ou setor" autocomplete="organization">
+            </div>
+            <div class="form-row">
+              <label class="label" for="fContact">WhatsApp ou E-mail</label>
+              <input type="text" id="fContact" class="input" placeholder="+55 75 99999-9999" autocomplete="tel">
+            </div>
+            <div class="form-row">
+              <label class="label" for="fTopic">Qual é o seu momento agora?</label>
+              <select id="fTopic" class="input" style="cursor:pointer;">
+                <option value="">Selecione uma situação</option>
+                <option value="Caixa apertado mesmo faturando bem">Caixa aperta mesmo faturando bem</option>
+                <option value="Quero expandir mas não sei se tenho fôlego">Quero expandir mas não sei se tenho fôlego</option>
+                <option value="Não tenho ideia da minha margem real">Não sei qual produto me dá mais margem</option>
+                <option value="Preciso apresentar números para banco ou sócio">Preciso apresentar números para banco ou sócio</option>
+                <option value="Diagnóstico Financeiro">Quero começar pelo Diagnóstico</option>
+                <option value="CFO Externo / Acompanhamento Mensal">Quero o acompanhamento mensal (CFO Externo)</option>
+                <option value="Outro">Outro</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label class="label" for="fMsg">Me conta mais</label>
+              <textarea id="fMsg" class="textarea" placeholder="Qual é a principal dor agora? Quanto você fatura por mês (aproximado)?"></textarea>
+            </div>
+            <button type="submit" id="leadSubmit" class="form-submit">Enviar — respondo no mesmo dia</button>
+            <div id="formStatus" class="form-status"></div>
+          </form>
+        </div>
+
+        <div class="contact-links fade-in">
+          <a href="https://www.linkedin.com/in/custodior/" target="_blank" rel="noopener" class="contact-link">
+            <div class="c-icon">in</div>
+            <div class="c-content">
+              <span class="c-label">LinkedIn</span>
+              <span class="c-value">linkedin.com/in/custodior</span>
+            </div>
+            <div class="c-arrow">→</div>
+          </a>
+          <a href="https://wa.me/5575983144766" target="_blank" rel="noopener" class="contact-link" id="waQuick">
+            <div class="c-icon"><img src="wpp.png" alt="WhatsApp" class="img-whatsapp"></div>
+            <div class="c-content">
+              <span class="c-label">WhatsApp · Resposta rápida</span>
+              <span class="c-value">+55 (75) 98314-4766</span>
+            </div>
+            <div class="c-arrow">→</div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- ═══ SIMULATOR MODAL ═══ -->
   <div class="sim-modal" id="simulatorModal" aria-hidden="true">
     <div class="sim-modal-panel" role="dialog" aria-modal="true" aria-label="Simulador de Precificação">
-      <div class="sim-head">
-        <span>Simulador de Precificação — EPD v2</span>
+      <div class="sim-head"><span>Simulador de Precificação — EPD v2</span>
         <button class="sim-close" type="button" aria-label="Fechar simulador" onclick="closeSimulator()">×</button>
       </div>
       <iframe
@@ -1259,7 +2157,7 @@
     <span>CFO Externo · FP&amp;A · Feira de Santana, BA</span>
   </footer>
 
-  <!-- ═══ SCRIPTS ═══ -->
+  <!-- Scripts -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHREEZTTX5"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -1398,6 +2296,45 @@
       });
     }, { threshold: 0.08 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    /* Theme toggle */
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        htmlEl.classList.remove('light');
+        htmlEl.classList.add('dark');
+        themeToggle.querySelector('.theme-icon').textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        htmlEl.classList.remove('dark');
+        htmlEl.classList.add('light');
+        themeToggle.querySelector('.theme-icon').textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    // Initialize theme from localStorage or system preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else {
+      setTheme(prefersDark.matches ? 'dark' : 'light');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = htmlEl.classList.contains('dark');
+      setTheme(isDark ? 'light' : 'dark');
+    });
+
+    // Also respect system changes
+    prefersDark.addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    });
 
     /* Glow dinâmico no desktop apenas */
     if (window.matchMedia('(hover: hover)').matches) {
